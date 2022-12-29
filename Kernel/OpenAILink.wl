@@ -17,6 +17,8 @@ OpenAIModels
 OpenAICompletion
 OpenAICompletionObject
 
+OpenAICreateImage
+
 
 Begin["`Private`"];
 
@@ -25,6 +27,7 @@ Needs["ChristopherWolfram`OpenAILink`Constants`"]
 Needs["ChristopherWolfram`OpenAILink`Request`"]
 Needs["ChristopherWolfram`OpenAILink`Models`"]
 Needs["ChristopherWolfram`OpenAILink`Completion`"]
+Needs["ChristopherWolfram`OpenAILink`Image`"]
 Needs["ChristopherWolfram`OpenAILink`Messages`"]
 
 
