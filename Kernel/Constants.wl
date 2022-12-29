@@ -8,9 +8,17 @@ Needs["ChristopherWolfram`OpenAILink`"]
 (*
 	OpenAI requires that API keys are loaded from the OPENAI_API_KEY environment variable by default:
 	https://help.openai.com/en/articles/6684216-adding-your-api-client-to-the-community-libraries-page
+
+	SystemCredential is more secure, so that is the top-priority option here.
 *)
 
-$OpenAIAPIKey := Environment["OPENAI_API_KEY"]
+$OpenAIAPIKey :=
+	With[{key = SystemCredential["OPENAI_API_KEY"]},
+		If[!MissingQ[key],
+			key,
+			Environment["OPENAI_API_KEY"]
+		]
+	]
 
 
 (*

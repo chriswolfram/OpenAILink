@@ -478,8 +478,11 @@ text that users will see when visiting the main landing page of your paclet.",
  CellTags->{"Basic Description", "LongDescription", "TemplateCellGroup"},
  CellID->433339604,ExpressionUUID->"bfc32878-5b78-4e64-939e-ae5fc138c4ba"],
 
-Cell["A paragraph that describes your paclet in more detail.", "Text",
+Cell["\<\
+OpenAILink uses the OpenAI API to access to GPT, DALL-E, and more.\
+\>", "Text",
  TaggingRules->{},
+ CellChangeTimes->{{3.881339182888797*^9, 3.881339256462945*^9}},
  CellTags->"DefaultContent",
  CellID->441612482,ExpressionUUID->"3599abc1-330e-4633-9274-0ef71cbdb82b"]
 }, Open  ]],
@@ -517,8 +520,9 @@ examples on the webpage for the resource.", "MoreInfoText"], Background ->
  CellTags->{"Details", "TemplateCellGroup"},
  CellID->484110581,ExpressionUUID->"e5cae29f-2ccb-49bc-97df-27f6ffbf007f"],
 
-Cell["Additional information about the paclet.", "Notes",
+Cell["Requires an OpenAI account and access key.", "Notes",
  TaggingRules->{},
+ CellChangeTimes->{{3.881339280288419*^9, 3.8813392938764772`*^9}},
  CellTags->"DefaultContent",
  CellID->889292814,ExpressionUUID->"c05303bf-d1d9-41c2-911b-fa5d993236aa"]
 }, Open  ]],
@@ -3821,7 +3825,7 @@ concepts) that should be used to include the paclet in search results.",
  CellTags->{"Keywords", "TemplateCellGroup"},
  CellID->913860664,ExpressionUUID->"32b67154-4f77-4847-97c8-fc7451571098"],
 
-Cell["keyword 1", "Item",
+Cell["AI", "Item",
  TaggingRules->{},
  CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
        SelectedNotebook[], After, Cell]; NotebookFind[
@@ -3829,8 +3833,119 @@ Cell["keyword 1", "Item",
        WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
        SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
    PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339315345654*^9}},
  CellTags->{"DefaultContent", "TabNext"},
- CellID->560424104,ExpressionUUID->"a179456e-1ae1-422d-bd83-6ba0177d761b"]
+ CellID->560424104,ExpressionUUID->"a179456e-1ae1-422d-bd83-6ba0177d761b"],
+
+Cell["machine learning", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.88133931808749*^9}},
+ CellID->571434056,ExpressionUUID->"0e2ae9d8-6252-4b8e-a6da-2c591fe9c921"],
+
+Cell["ML", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339318747346*^9}},
+ CellID->1149309654,ExpressionUUID->"383ef038-d8f9-479d-bd45-49f3cfb4f6df"],
+
+Cell["artificial intelligence", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393283186626`*^9}},
+ CellID->628602957,ExpressionUUID->"d000eca4-62d2-49d9-bfeb-359202573fa7"],
+
+Cell["OpenAI", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339326076852*^9}},
+ CellID->1775163937,ExpressionUUID->"7e20c165-bd2f-4317-b2d9-b54c262f3351"],
+
+Cell["GPT", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339329543543*^9}},
+ CellID->375530997,ExpressionUUID->"986360c7-af5a-43de-81d1-aae6ba51ac47"],
+
+Cell["GPT3", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}},
+ CellID->1168438417,ExpressionUUID->"cfaa0dfc-bb66-4dea-9987-dd7a3d4982d0"],
+
+Cell["ChatGPT", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393343586817`*^9}},
+ CellID->1928497656,ExpressionUUID->"a11d1658-5e1d-4a1c-886e-f437e7830150"],
+
+Cell["DALL-E", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393384803133`*^9}},
+ CellID->1936467578,ExpressionUUID->"c93b6e48-afa8-4bb9-bb07-9df35bd43971"],
+
+Cell["image generation", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339343594522*^9}},
+ CellID->808185066,ExpressionUUID->"d473ab40-9985-4e44-b43b-ee5b20835d1e"],
+
+Cell["text generation", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.881339345541857*^9}},
+ CellID->23144899,ExpressionUUID->"4f4a9325-a4d5-4ec1-bbe4-dd22d61197ef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3887,8 +4002,10 @@ Cell[BoxData[
         {
          StyleBox[
           TemplateBox[{
-            CheckboxBox[False, {False, "External Interfaces & Connections"}], 
-            "\" \"", "\"External Interfaces & Connections\""},
+            CheckboxBox[
+            "External Interfaces & Connections", {
+             False, "External Interfaces & Connections"}], "\" \"", 
+            "\"External Interfaces & Connections\""},
            "RowDefault"],
           StripOnInput->False,
           FontSize->12]},
@@ -3918,8 +4035,8 @@ Cell[BoxData[
         {
          StyleBox[
           TemplateBox[{
-            CheckboxBox[False, {False, "Machine Learning"}], "\" \"", 
-            "\"Machine Learning\""},
+            CheckboxBox["Machine Learning", {False, "Machine Learning"}], 
+            "\" \"", "\"Machine Learning\""},
            "RowDefault"],
           StripOnInput->False,
           FontSize->12]},
@@ -4014,8 +4131,9 @@ Cell[BoxData[
          StyleBox[
           TemplateBox[{
             CheckboxBox[
-            False, {False, "Knowledge Representation & Natural Language"}], 
-            "\" \"", "\"Knowledge Representation & Natural Language\""},
+            "Knowledge Representation & Natural Language", {
+             False, "Knowledge Representation & Natural Language"}], "\" \"", 
+            "\"Knowledge Representation & Natural Language\""},
            "RowDefault"],
           StripOnInput->False,
           FontSize->12]},
@@ -4081,6 +4199,7 @@ HIPqUI3eXu1R5CRlw1Aj7NrALXMKhnlG+\
 cJw2tLsrSpusYVyIiiqwXQQrWULeeevQc4RjLRif1iuk5G0dK2to2n686+\
 yDRsqvo2IxJJTdhCb8EsUFNf4yawGrw2L+A8+NYfTOJ+\
 2aAEVlIoSBMPU79Ug2eImP6NIjnZDp5Bu0Gkuz"},
+ CellChangeTimes->{{3.8813393518944073`*^9, 3.8813393633366537`*^9}},
  CellTags->{"Categories", "Categories-Checkboxes", "CheckboxCell"},
  CellID->969880382,ExpressionUUID->"1449596f-817a-405e-8075-fbf354f1ee85"]
 }, Open  ]],
@@ -4203,7 +4322,10 @@ to the paclet.", "MoreInfoText"], Background -> GrayLevel[0.95], FrameMargins ->
  CellTags->{"Links", "TemplateCellGroup"},
  CellID->179193585,ExpressionUUID->"2422c44e-4595-431f-b9b9-2d8ba7ba957d"],
 
-Cell["Link to other related material", "Item",
+Cell[TextData[ButtonBox["https://openai.com",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://openai.com"], None}]], "Item",
  TaggingRules->{},
  CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
        SelectedNotebook[], After, Cell]; NotebookFind[
@@ -4211,6 +4333,7 @@ Cell["Link to other related material", "Item",
        WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
        SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
    PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.8813394657050333`*^9, 3.88133949087706*^9}},
  CellTags->{"DefaultContent", "TabNext"},
  CellID->938599834,ExpressionUUID->"7e996bb8-f7ff-40fb-860b-2dcb9948bcc7"]
 }, Open  ]],
@@ -4933,7 +5056,8 @@ Cell[BoxData[
         {
          StyleBox[
           TemplateBox[{
-            CheckboxBox[False, {False, "ExternalServices"}], "\" \"", 
+            CheckboxBox["ExternalServices", {False, "ExternalServices"}], 
+            "\" \"", 
             TemplateBox[{"\"External services\"", 
               TemplateBox[{"DisclosuresExternalServices", 
                 Cell[
@@ -4988,6 +5112,7 @@ rB57ecvJ1pJDU11swI02LF3zuhG3Px4u9Ah711ZU4B15UPOvVktWGyuxH/\
 1RdToDKx0kNxbtp0GW8b1tM8TuWYhuBAK4SF+\
 tjwtQfzFPSaGDzQRGuVzjffEMOSHE03nCkvY9fT6I11yf41A/5RBBEjXM4Z5WdDP56q+\
 pb8Bk6mkSA=="},
+ CellChangeTimes->{{3.881339526100862*^9, 3.881339526265614*^9}},
  CellTags->{
   "CheckboxCell", "Disclosures-ExternalServices", "ExternalServices", 
    "ExternalServices-Checkboxes"},
@@ -5243,6 +5368,7 @@ ccanBB2dU4lh5GJBVfXh6AyZCVbeWzqvE6HQlMhZD7mqC2czruHw7tUZbbPq75G7Qj2MIzjZals//\
 bHUoe1feFehD+Xh4/7JWKDW34L9mY4LsEr0OqLbMdtruA+\
 d656cs6ZqL7hkYwsdYehBpaZJvtvgYPjpG4kzMLW2JYigPpzagLzyj1zvsj2wp4zUh/0oGMyS+\
 kSnOy4L/OWvMX7ZnntY="},
+ CellChangeTimes->{{3.881339628738155*^9, 3.881339629962984*^9}},
  CellTags->{
   "CheckboxCell", "Disclosures-PacletDependencies", "PacletDependencies", 
    "PacletDependencies-Checkboxes"},
@@ -5527,7 +5653,11 @@ that are otherwise beyond the scope of the paclet documentation.",
  CellTags->{"Author Notes", "TemplateCellGroup"},
  CellID->951557313,ExpressionUUID->"06654c41-063b-4895-bcbe-ffd86927daed"],
 
-Cell["Additional information about limitations, issues, etc.", "Text",
+Cell["\<\
+This is still a work-in-progress and is missing connections to a few of \
+OpenAI's APIs. In particular, it is missing support for embeddings, edits, \
+moderations, and the fine-tuning system.\
+\>", "Text",
  TaggingRules->{},
  CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
        SelectedNotebook[], After, Cell]; NotebookFind[
@@ -5535,13 +5665,14 @@ Cell["Additional information about limitations, issues, etc.", "Text",
        WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
        SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
    PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.8813395309042377`*^9, 3.881339620085767*^9}},
  CellTags->{"DefaultContent", "TabNext"},
  CellID->908162033,ExpressionUUID->"cd7befd0-6793-4689-b23b-54d72cf57b5a"]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1091, Automatic},
-WindowMargins->{{Automatic, 120}, {Automatic, 9}},
+WindowMargins->{{Automatic, 120}, {Automatic, 8}},
 WindowTitle->"OpenAILink | Definition Notebook",
 DockedCells->{
   Cell[
