@@ -1,12 +1,14 @@
+(* ::Package:: *)
+
 PacletObject[
   <|
     "Name" -> "ChristopherWolfram/OpenAILink",
-    "Description" -> "GPT, DALL-E, and more through the OpenAI API.",
+    "Description" -> "GPT, DALL-E, and more through the OpenAI API",
     "Creator" -> "Christopher Wolfram",
+    "License" -> "MIT",
+    "PublisherID" -> "ChristopherWolfram",
     "Version" -> "1.0.0",
     "WolframVersion" -> "13.2+",
-    "PublisherID" -> "ChristopherWolfram",
-    "License" -> "MIT",
     "Extensions" -> {
       {
         "Kernel",
