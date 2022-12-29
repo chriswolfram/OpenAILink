@@ -1,0 +1,2015 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     97813,       2007]
+NotebookOptionsPosition[     93266,       1918]
+NotebookOutlinePosition[     93664,       1934]
+CellTagsIndexPosition[     93621,       1931]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["Quit"], "Input",
+ CellChangeTimes->{{3.881284583875959*^9, 3.8812845841855164`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"917b280c-b7b5-446e-9da2-96b212833af8"],
+
+Cell[CellGroupData[{
+
+Cell["Init", "Section",
+ CellChangeTimes->{{3.8812740623100233`*^9, 
+  3.881274062735766*^9}},ExpressionUUID->"df524804-4a81-4edb-bd68-\
+ffb72f280038"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PacletDirectoryLoad", "[", 
+   RowBox[{"ParentDirectory", "[", 
+    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}], ";"}]], "Input", \
+"Excluded",
+ InitializationCell->True,
+ CellChangeTimes->{{3.881274065851315*^9, 3.8812740687941*^9}},
+ CellLabel->"In[1]:=",
+ CellID->996717066,ExpressionUUID->"062b83ca-6d7a-4b5f-ba58-bef2f57b6101"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<ChristopherWolfram`OpenAILink`\>\"", "]"}], 
+  ";"}]], "Input", "Excluded",
+ InitializationCell->True,
+ CellLabel->"In[2]:=",
+ CellID->172764492,ExpressionUUID->"61b43c22-6790-400d-a4c0-3cd638f97e2b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Scratch space", "Section",
+ CellChangeTimes->{{3.881274079382935*^9, 
+  3.881274083563339*^9}},ExpressionUUID->"84a5c6f1-d2c9-448b-a2c6-\
+526760a0f506"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAIModels", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.881323485811007*^9, 3.881323487833789*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"4f7f9548-04c4-4008-aaf0-64ab81b0e8e0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"babbage\"\>", ",", "\<\"ada\"\>", 
+   ",", "\<\"text-davinci-002\"\>", ",", "\<\"davinci\"\>", 
+   ",", "\<\"babbage-code-search-code\"\>", 
+   ",", "\<\"text-similarity-babbage-001\"\>", 
+   ",", "\<\"text-davinci-003\"\>", ",", "\<\"code-davinci-002\"\>", 
+   ",", "\<\"text-davinci-001\"\>", ",", "\<\"curie-instruct-beta\"\>", 
+   ",", "\<\"babbage-code-search-text\"\>", ",", "\<\"babbage-similarity\"\>",
+    ",", "\<\"curie-search-query\"\>", 
+   ",", "\<\"code-search-babbage-text-001\"\>", 
+   ",", "\<\"code-cushman-001\"\>", 
+   ",", "\<\"code-search-babbage-code-001\"\>", ",", "\<\"text-ada-001\"\>", 
+   ",", "\<\"text-similarity-ada-001\"\>", 
+   ",", "\<\"text-davinci-insert-002\"\>", 
+   ",", "\<\"text-embedding-ada-002\"\>", ",", "\<\"ada-code-search-code\"\>",
+    ",", "\<\"ada-similarity\"\>", ",", "\<\"code-search-ada-text-001\"\>", 
+   ",", "\<\"text-search-ada-query-001\"\>", ",", "\<\"text-curie-001\"\>", 
+   ",", "\<\"text-davinci-edit-001\"\>", 
+   ",", "\<\"davinci-search-document\"\>", 
+   ",", "\<\"ada-code-search-text\"\>", 
+   ",", "\<\"text-search-ada-doc-001\"\>", 
+   ",", "\<\"code-davinci-edit-001\"\>", ",", "\<\"davinci-instruct-beta\"\>",
+    ",", "\<\"text-babbage-001\"\>", ",", "\<\"text-similarity-curie-001\"\>",
+    ",", "\<\"code-search-ada-code-001\"\>", ",", "\<\"ada-search-query\"\>", 
+   ",", "\<\"text-search-davinci-query-001\"\>", 
+   ",", "\<\"curie-similarity\"\>", ",", "\<\"davinci-search-query\"\>", 
+   ",", "\<\"text-davinci-insert-001\"\>", 
+   ",", "\<\"babbage-search-document\"\>", ",", "\<\"ada-search-document\"\>",
+    ",", "\<\"curie\"\>", ",", "\<\"text-search-babbage-doc-001\"\>", 
+   ",", "\<\"text-search-curie-doc-001\"\>", 
+   ",", "\<\"text-search-curie-query-001\"\>", 
+   ",", "\<\"babbage-search-query\"\>", 
+   ",", "\<\"text-search-davinci-doc-001\"\>", 
+   ",", "\<\"text-search-babbage-query-001\"\>", 
+   ",", "\<\"curie-search-document\"\>", 
+   ",", "\<\"text-similarity-davinci-001\"\>", 
+   ",", "\<\"audio-transcribe-001\"\>", ",", "\<\"davinci-similarity\"\>", 
+   ",", "\<\"cushman:2020-05-03\"\>", ",", "\<\"ada:2020-05-03\"\>", 
+   ",", "\<\"babbage:2020-05-03\"\>", ",", "\<\"curie:2020-05-03\"\>", 
+   ",", "\<\"davinci:2020-05-03\"\>", ",", "\<\"if-davinci-v2\"\>", 
+   ",", "\<\"if-curie-v2\"\>", ",", "\<\"if-davinci:3.0.0\"\>", 
+   ",", "\<\"davinci-if:3.0.0\"\>", 
+   ",", "\<\"davinci-instruct-beta:2.0.0\"\>", ",", "\<\"text-ada:001\"\>", 
+   ",", "\<\"text-davinci:001\"\>", ",", "\<\"text-curie:001\"\>", 
+   ",", "\<\"text-babbage:001\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.8813234905264072`*^9, {3.8813236178079042`*^9, 3.881323621511252*^9}, 
+   3.88132649457279*^9, 3.881331725559676*^9, 3.881331852156999*^9, 
+   3.8813321354180813`*^9, 3.881332425083312*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"b11fe157-9cdf-4b11-b69a-cc9a2350ecd3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"completion", "=", 
+  RowBox[{"OpenAICompletion", "[", 
+   RowBox[{"\"\<Say this is a test\\n\\n\>\"", ",", 
+    RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.881326494810758*^9, 3.8813265303507023`*^9}, {
+  3.881326579167824*^9, 3.881326633783662*^9}, {3.881331726187726*^9, 
+  3.881331727390833*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"1e37fcf3-7227-4029-803b-52624e83c897"],
+
+Cell[BoxData["\<\"This is indeed a test.\"\>"], "Output",
+ CellChangeTimes->{
+  3.8813265077360487`*^9, {3.881326583739018*^9, 3.881326634874239*^9}, 
+   3.881331730121258*^9, 3.881331853615472*^9, 3.8813321368729563`*^9, 
+   3.881332427488846*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"d693bccc-03c8-4e37-9fca-ff1c94fef31b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"completion", "=", 
+  RowBox[{"OpenAICompletion", "[", 
+   RowBox[{"\"\<Say this is a test\\n\\n\>\"", ",", "All", ",", 
+    RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.8813321549534597`*^9, 3.8813321602262363`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"aa0b2b6e-2008-4aea-bda0-40d006d32662"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["OpenAICompletionObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"], 
+               ImageSizeCache -> {11., {0., 11.}}], Appearance -> None, 
+              BaseStyle -> {}, ButtonFunction :> (Typeset`open$$ = True), 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               TagBox["\"prompt: \"", "SummaryItem"], 
+               TagBox["\"Say this is a test\\n\\n\"", "SummaryItem"]}, {
+               TagBox["\"completion: \"", "SummaryItem"], 
+               TagBox["\"This is indeed a test.\"", "SummaryItem"]}, {
+               TagBox["\"finish reason: \"", "SummaryItem"], 
+               TagBox["\"Stop\"", "SummaryItem"]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"], 
+               ImageSizeCache -> {11., {0., 11.}}], Appearance -> None, 
+              BaseStyle -> {}, ButtonFunction :> (Typeset`open$$ = False), 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               TagBox["\"prompt: \"", "SummaryItem"], 
+               TagBox["\"Say this is a test\\n\\n\"", "SummaryItem"]}, {
+               TagBox["\"completion: \"", "SummaryItem"], 
+               TagBox["\"This is indeed a test.\"", "SummaryItem"]}, {
+               TagBox["\"finish reason: \"", "SummaryItem"], 
+               TagBox["\"Stop\"", "SummaryItem"]}, {
+               TagBox["\"model: \"", "SummaryItem"], 
+               TagBox["\"text-davinci-003\"", "SummaryItem"]}, {
+               TagBox["\"response usage: \"", "SummaryItem"], 
+               TagBox[
+                RowBox[{"\[LeftAssociation]", 
+                  RowBox[{
+                    RowBox[{"\"PromptTokens\"", "\[Rule]", "6"}], ",", 
+                    RowBox[{"\"CompletionTokens\"", "\[Rule]", "6"}], ",", 
+                    RowBox[{"\"TotalTokens\"", "\[Rule]", "12"}]}], 
+                  "\[RightAssociation]"}], "SummaryItem"]}}, AutoDelete -> 
+             False, BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  ChristopherWolfram`OpenAILink`OpenAICompletionObject[<|
+   "Prompt" -> "Say this is a test\n\n", "Suffix" -> Automatic, "Completion" -> 
+    "This is indeed a test.", "Model" -> "text-davinci-003", "FinishReason" -> 
+    "Stop", 
+    "ResponseUsage" -> <|
+     "PromptTokens" -> 6, "CompletionTokens" -> 6, "TotalTokens" -> 12|>|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.881332156026932*^9, 3.881332163482327*^9}, 
+   3.881332429327126*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"62a6f3fb-9b50-40e7-af24-a8488ab0ab04"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"completion", "=", 
+  RowBox[{"OpenAICompletion", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Say this is a test\\n\\n\>\"", ",", 
+      "\"\<\\n\\nThat's not what I said!\>\""}], "}"}], ",", "All", ",", 
+    RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.881331742417082*^9, 3.881331742879779*^9}, {
+  3.881331856158925*^9, 3.881331894327921*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"9a20eadc-9a5e-4d54-96f8-55344d5b1180"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["OpenAICompletionObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               TagBox["\"prompt: \"", "SummaryItem"], 
+               TagBox["\"Say this is a test\\n\\n\"", "SummaryItem"]}, {
+               TagBox["\"completion: \"", "SummaryItem"], 
+               TagBox[
+               "\"\\nThank you for understanding.\\n\"", "SummaryItem"]}, {
+               TagBox["\"suffix: \"", "SummaryItem"], 
+               TagBox["\"\\n\\nThat's not what I said!\"", "SummaryItem"]}, {
+               TagBox["\"finish reason: \"", "SummaryItem"], 
+               TagBox["\"Length\"", "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               TagBox["\"prompt: \"", "SummaryItem"], 
+               TagBox["\"Say this is a test\\n\\n\"", "SummaryItem"]}, {
+               TagBox["\"completion: \"", "SummaryItem"], 
+               TagBox[
+               "\"\\nThank you for understanding.\\n\"", "SummaryItem"]}, {
+               TagBox["\"suffix: \"", "SummaryItem"], 
+               TagBox["\"\\n\\nThat's not what I said!\"", "SummaryItem"]}, {
+               TagBox["\"finish reason: \"", "SummaryItem"], 
+               TagBox["\"Length\"", "SummaryItem"]}, {
+               TagBox["\"model: \"", "SummaryItem"], 
+               TagBox["\"text-davinci-003\"", "SummaryItem"]}, {
+               TagBox["\"response usage: \"", "SummaryItem"], 
+               TagBox[
+                RowBox[{"\[LeftAssociation]", 
+                  RowBox[{
+                    RowBox[{"\"PromptTokens\"", "\[Rule]", "15"}], ",", 
+                    RowBox[{"\"CompletionTokens\"", "\[Rule]", "7"}], ",", 
+                    RowBox[{"\"TotalTokens\"", "\[Rule]", "22"}]}], 
+                  "\[RightAssociation]"}], "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  ChristopherWolfram`OpenAILink`OpenAICompletionObject[<|
+   "Prompt" -> "Say this is a test\n\n", "Suffix" -> 
+    "\n\nThat's not what I said!", "Completion" -> 
+    "\nThank you for understanding.\n", "Model" -> "text-davinci-003", 
+    "FinishReason" -> "Length", 
+    "ResponseUsage" -> <|
+     "PromptTokens" -> 15, "CompletionTokens" -> 7, "TotalTokens" -> 22|>|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.881331743105361*^9, 3.881331858653658*^9, 
+  3.881331896698868*^9, 3.881332138229095*^9, 3.881332439462309*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"d2677dd7-3352-4e56-8547-26ced35ce024"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"completion", "[", "\"\<CompletedPrompt\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.881331861549067*^9, 3.881331875036327*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"0002d1a3-ce93-42e7-9219-65c63355e613"],
+
+Cell[BoxData["\<\"Say this is a test\\n\\nThis is not a test. \
+This\\n\\nThat's not what I said!\"\>"], "Output",
+ CellChangeTimes->{{3.8813318642409763`*^9, 3.8813318979413424`*^9}},
+ CellLabel->"Out[10]=",ExpressionUUID->"ad6a0e0d-1067-4b05-b31f-c2fab9d60193"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"completion", "[", "\"\<ResponseUsage\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.881331917050317*^9, 3.881331921649886*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"89eda191-d7fc-48d4-bf5d-4ee0a8cec72a"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "15"}], ",", 
+   RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "7"}], ",", 
+   RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "22"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.881331921856243*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"fdc2c3d6-f376-400b-83f1-23fdb5d6ae4a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAICompletion", "[", 
+  RowBox[{
+  "\"\<Say this is a test\\n\\n\>\"", ",", "\"\<Completion\>\"", ",", 
+   RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.881326649880632*^9, 3.8813266544303837`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"10ac661e-b093-4671-92f4-dd246b1b14a0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"OpenAICompletionObject", "[", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\<\"Completion\"\>", 
+      "\[Rule]", "\<\"This is indeed a test!\"\>"}], ",", 
+     RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+     RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+     RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+        RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "6"}], ",", 
+        RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "12"}]}], 
+       "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+  "[", "\<\"Completion\"\>", "]"}]], "Output",
+ CellChangeTimes->{3.881326655192904*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"808b545e-e894-45ce-bdfc-a45d26e83315"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAICompletion", "[", 
+  RowBox[{"\"\<Say this is a test\\n\\n\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<Completion\>\"", ",", "\"\<Model\>\""}], "}"}], ",", 
+   RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.881326658200835*^9, 3.8813266648553667`*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"ce665ac8-a2ee-4aee-b4c6-516b508b30a8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"OpenAICompletionObject", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"Completion\"\>", 
+        "\[Rule]", "\<\"\\nThis is a test.\"\>"}], ",", 
+       RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+       
+       RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+       RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+          RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "6"}], ",", 
+          RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "12"}]}], 
+         "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+    "[", "\<\"Completion\"\>", "]"}], ",", 
+   RowBox[{
+    RowBox[{"OpenAICompletionObject", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"Completion\"\>", 
+        "\[Rule]", "\<\"\\nThis is a test.\"\>"}], ",", 
+       RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+       
+       RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+       RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+          RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "6"}], ",", 
+          RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "12"}]}], 
+         "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+    "[", "\<\"Model\"\>", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.8813266655372887`*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"e731c77f-d4ba-4381-99f7-5022249953a3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAICompletion", "[", 
+  RowBox[{"\"\<Say this is a test\\n\\n\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<Completion\>\"", ",", "\"\<Model\>\""}], "}"}], ",", "2", 
+   ",", 
+   RowBox[{"OpenAITokenLimit", "->", "7"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.881326671282053*^9, 3.881326671406775*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"f3826783-0830-498c-bf63-692313a0943a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"OpenAICompletionObject", "[", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\<\"Completion\"\>", 
+          "\[Rule]", "\<\"This is indeed a test.\"\>"}], ",", 
+         RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], 
+         ",", 
+         RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+         RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+          RowBox[{"\[LeftAssociation]", 
+           RowBox[{
+            RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+            RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "12"}], ",", 
+            RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "18"}]}], 
+           "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+      "[", "\<\"Completion\"\>", "]"}], ",", 
+     RowBox[{
+      RowBox[{"OpenAICompletionObject", "[", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\<\"Completion\"\>", 
+          "\[Rule]", "\<\"This is indeed a test.\"\>"}], ",", 
+         RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], 
+         ",", 
+         RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+         RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+          RowBox[{"\[LeftAssociation]", 
+           RowBox[{
+            RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+            RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "12"}], ",", 
+            RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "18"}]}], 
+           "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+      "[", "\<\"Model\"\>", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"OpenAICompletionObject", "[", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\<\"Completion\"\>", 
+          "\[Rule]", "\<\"This is indeed a test!\"\>"}], ",", 
+         RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], 
+         ",", 
+         RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+         RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+          RowBox[{"\[LeftAssociation]", 
+           RowBox[{
+            RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+            RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "12"}], ",", 
+            RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "18"}]}], 
+           "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+      "[", "\<\"Completion\"\>", "]"}], ",", 
+     RowBox[{
+      RowBox[{"OpenAICompletionObject", "[", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\<\"Completion\"\>", 
+          "\[Rule]", "\<\"This is indeed a test!\"\>"}], ",", 
+         RowBox[{"\<\"Model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], 
+         ",", 
+         RowBox[{"\<\"FinishReason\"\>", "\[Rule]", "\<\"Stop\"\>"}], ",", 
+         RowBox[{"\<\"ResponseUsage\"\>", "\[Rule]", 
+          RowBox[{"\[LeftAssociation]", 
+           RowBox[{
+            RowBox[{"\<\"PromptTokens\"\>", "\[Rule]", "6"}], ",", 
+            RowBox[{"\<\"CompletionTokens\"\>", "\[Rule]", "12"}], ",", 
+            RowBox[{"\<\"TotalTokens\"\>", "\[Rule]", "18"}]}], 
+           "\[RightAssociation]"}]}]}], "\[RightAssociation]"}], "]"}], 
+      "[", "\<\"Model\"\>", "]"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.881326672408903*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"a99781d9-c609-4979-b0f4-6b7c875d1bfe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ChristopherWolfram`OpenAILink`Request`OpenAIRequest", "[", 
+  RowBox[{"{", 
+   RowBox[{"\"\<v1\>\"", ",", "\"\<models2\>\""}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.8812852321941633`*^9, {3.8812872780455027`*^9, 3.881287289114538*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"74243d03-64c6-4434-b2dc-bc32d56c2ed5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ChristopherWolfram`OpenAILink`Request`OpenAIRequest", 
+   "openAIResponseFailureMessage", 
+   "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"Invalid URL (GET \
+/v1/models2)\\\\\\\"\\\"}]\\).\"", 2, 9, 8, 19217686508669814616, "Local", 
+   "ChristopherWolfram`OpenAILink`Request`OpenAIRequest"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.881285232947526*^9, 3.881287008664987*^9, 3.881287153413938*^9, {
+   3.8812872824556847`*^9, 3.881287289721414*^9}},
+ CellLabel->
+  "During evaluation of \
+In[9]:=",ExpressionUUID->"7e75246f-7ceb-4173-a905-973d0a4d93a8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Failure",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Invalid URL (GET /v1/models2)\\\\\\\"\\\", \
+Function[Short[Slot[1], 5]]]\\).\"", HoldForm], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 
+                    34, 58, 32, 123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 
+                    115, 97, 103, 101, 34, 58, 32, 34, 73, 110, 118, 97, 108, 
+                    105, 100, 32, 85, 82, 76, 32, 40, 71, 69, 84, 32, 47, 118,
+                     49, 47, 109, 111, 100, 101, 108, 115, 50, 41, 34, 44, 10,
+                     32, 32, 32, 32, 34, 116, 121, 112, 101, 34, 58, 32, 34, 
+                    105, 110, 118, 97, 108, 105, 100, 95, 114, 101, 113, 117, 
+                    101, 115, 116, 95, 101, 114, 114, 111, 114, 34, 44, 10, 
+                    32, 32, 32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 
+                    110, 117, 108, 108, 44, 10, 32, 32, 32, 32, 34, 99, 111, 
+                    100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32, 125,
+                     10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:21:29 GMT"}, {
+                    "Content-Type", "application/json"}, {
+                    "Content-Length", "142"}, {"Connection", "keep-alive"}, {
+                    "Access-Control-Allow-Origin", "*"}, {
+                    "OpenAI-Version", "2020-10-01"}, {
+                    "X-Request-ID", "1b6f6d70b76438019814b6fa0480beff"}, {
+                    "OpenAI-Processing-Ms", "3"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}}, "StatusCode" -> 
+                    404, "Cookies" -> {}|>, CharacterEncoding -> Automatic], 
+                    Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Invalid URL (GET /v1/models2)\\\\\\\"\\\", \
+Function[Short[Slot[1], 5]]]\\).\"", HoldForm], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 
+                    34, 58, 32, 123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 
+                    115, 97, 103, 101, 34, 58, 32, 34, 73, 110, 118, 97, 108, 
+                    105, 100, 32, 85, 82, 76, 32, 40, 71, 69, 84, 32, 47, 118,
+                     49, 47, 109, 111, 100, 101, 108, 115, 50, 41, 34, 44, 10,
+                     32, 32, 32, 32, 34, 116, 121, 112, 101, 34, 58, 32, 34, 
+                    105, 110, 118, 97, 108, 105, 100, 95, 114, 101, 113, 117, 
+                    101, 115, 116, 95, 101, 114, 114, 111, 114, 34, 44, 10, 
+                    32, 32, 32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 
+                    110, 117, 108, 108, 44, 10, 32, 32, 32, 32, 34, 99, 111, 
+                    100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32, 125,
+                     10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:21:29 GMT"}, {
+                    "Content-Type", "application/json"}, {
+                    "Content-Length", "142"}, {"Connection", "keep-alive"}, {
+                    "Access-Control-Allow-Origin", "*"}, {
+                    "OpenAI-Version", "2020-10-01"}, {
+                    "X-Request-ID", "1b6f6d70b76438019814b6fa0480beff"}, {
+                    "OpenAI-Processing-Ms", "3"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}}, "StatusCode" -> 
+                    404, "Cookies" -> {}|>, CharacterEncoding -> Automatic], 
+                    Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  Failure[
+  "OpenAIResponseFailure", <|
+   "MessageTemplate" :> 
+    MessageName[
+     ChristopherWolfram`OpenAILink`Request`OpenAIRequest, 
+      "openAIResponseFailureMessage"], 
+    "MessageParameters" -> {"Invalid URL (GET /v1/models2)"}, "HTTPResponse" -> 
+    HTTPResponse[
+      ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 34, 58, 32, 
+       123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 115, 97, 103, 101, 34, 58, 
+       32, 34, 73, 110, 118, 97, 108, 105, 100, 32, 85, 82, 76, 32, 40, 71, 
+       69, 84, 32, 47, 118, 49, 47, 109, 111, 100, 101, 108, 115, 50, 41, 34, 
+       44, 10, 32, 32, 32, 32, 34, 116, 121, 112, 101, 34, 58, 32, 34, 105, 
+       110, 118, 97, 108, 105, 100, 95, 114, 101, 113, 117, 101, 115, 116, 95,
+        101, 114, 114, 111, 114, 34, 44, 10, 32, 32, 32, 32, 34, 112, 97, 114,
+        97, 109, 34, 58, 32, 110, 117, 108, 108, 44, 10, 32, 32, 32, 32, 34, 
+       99, 111, 100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32, 125, 10,
+        125, 10}], <|
+      "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:21:29 GMT"}, {
+         "Content-Type", "application/json"}, {"Content-Length", "142"}, {
+         "Connection", "keep-alive"}, {"Access-Control-Allow-Origin", "*"}, {
+         "OpenAI-Version", "2020-10-01"}, {
+         "X-Request-ID", "1b6f6d70b76438019814b6fa0480beff"}, {
+         "OpenAI-Processing-Ms", "3"}, {
+         "Strict-Transport-Security", "max-age=15724800; includeSubDomains"}},
+        "StatusCode" -> 404, "Cookies" -> {}|>, CharacterEncoding -> 
+      Automatic]|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{
+  3.88128523299817*^9, 3.881287008697897*^9, 3.8812871534463043`*^9, {
+   3.8812872826954737`*^9, 3.881287289756557*^9}},
+ CellLabel->"Out[9]=",ExpressionUUID->"b699b978-8501-4bad-b2f0-c3fc577b698d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ChristopherWolfram`OpenAILink`Request`OpenAIRequest", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<v1\>\"", ",", "\"\<completions\>\""}], "}"}], ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<model\>\"", " ", "->", " ", "\"\<text-davinci-003\>\""}], 
+     ",", " ", 
+     RowBox[{"\"\<prompt\>\"", " ", "->", " ", "\"\<Say this is a test\>\""}],
+      ",", " ", 
+     RowBox[{"\"\<temperature\>\"", " ", "->", " ", "0"}], ",", 
+     RowBox[{"\"\<max_tokens\>\"", " ", "->", " ", "7"}]}], "|>"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.881287206125822*^9, 3.881287210415052*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"c5dfa87f-ec80-43c4-8e87-975eed7ba331"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"id\"\>", 
+    "\[Rule]", "\<\"cmpl-6ShUyZo24wIQ8tenKlM7DothNzSwM\"\>"}], ",", 
+   RowBox[{"\<\"object\"\>", "\[Rule]", "\<\"text_completion\"\>"}], ",", 
+   RowBox[{"\<\"created\"\>", "\[Rule]", "1672298412"}], ",", 
+   RowBox[{"\<\"model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+   RowBox[{"\<\"choices\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"text\"\>", 
+        "\[Rule]", "\<\"\\n\\nThis is indeed a test\"\>"}], ",", 
+       RowBox[{"\<\"index\"\>", "\[Rule]", "0"}], ",", 
+       RowBox[{"\<\"logprobs\"\>", "\[Rule]", "Null"}], ",", 
+       RowBox[{"\<\"finish_reason\"\>", "\[Rule]", "\<\"length\"\>"}]}], 
+      "\[RightAssociation]"}], "}"}]}], ",", 
+   RowBox[{"\<\"usage\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"prompt_tokens\"\>", "\[Rule]", "5"}], ",", 
+      RowBox[{"\<\"completion_tokens\"\>", "\[Rule]", "7"}], ",", 
+      RowBox[{"\<\"total_tokens\"\>", "\[Rule]", "12"}]}], 
+     "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.881287212385275*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"4eddc93f-c823-44e6-a1b4-d61cddae82c8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ChristopherWolfram`OpenAILink`Request`OpenAIRequest", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<v1\>\"", ",", "\"\<completions\>\""}], "}"}], ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<model\>\"", " ", "->", " ", "\"\<text-davinci-003\>\""}], 
+     ",", " ", 
+     RowBox[{"\"\<prompt\>\"", " ", "->", " ", "\"\<Say this is a test\>\""}],
+      ",", " ", 
+     RowBox[{"\"\<temperature\>\"", " ", "->", " ", "0"}], ",", 
+     RowBox[{"\"\<max_tokens\>\"", " ", "->", " ", "7"}], ",", 
+     RowBox[{"\"\<logprobs\>\"", "->", "2"}]}], "|>"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.881291788508086*^9, 3.8812917921958427`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"27b01d2a-dccd-4b1b-8f73-93db7bf27226"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"id\"\>", 
+    "\[Rule]", "\<\"cmpl-6Sigrl7PjqrLZnNRGs7jWVy6XZDQ0\"\>"}], ",", 
+   RowBox[{"\<\"object\"\>", "\[Rule]", "\<\"text_completion\"\>"}], ",", 
+   RowBox[{"\<\"created\"\>", "\[Rule]", "1672302993"}], ",", 
+   RowBox[{"\<\"model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+   RowBox[{"\<\"choices\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"text\"\>", 
+        "\[Rule]", "\<\"\\n\\nThis is indeed a test\"\>"}], ",", 
+       RowBox[{"\<\"index\"\>", "\[Rule]", "0"}], ",", 
+       RowBox[{"\<\"logprobs\"\>", "\[Rule]", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"tokens\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\"\\n\"\>", ",", "\<\"\\n\"\>", ",", "\<\"This\"\>", 
+             ",", "\<\" is\"\>", ",", "\<\" indeed\"\>", ",", "\<\" a\"\>", 
+             ",", "\<\" test\"\>"}], "}"}]}], ",", 
+          RowBox[{"\<\"token_logprobs\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.055431582`"}], ",", 
+             RowBox[{"-", "0.01665694`"}], ",", 
+             RowBox[{"-", "0.543867`"}], ",", 
+             RowBox[{"-", "0.047616903`"}], ",", 
+             RowBox[{"-", "0.028082278`"}], ",", 
+             RowBox[{"-", "0.00022051518`"}], ",", 
+             RowBox[{"-", "0.00011237507`"}]}], "}"}]}], ",", 
+          RowBox[{"\<\"top_logprobs\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\".\"\>", "\[Rule]", 
+                RowBox[{"-", "4.5127497`"}]}], ",", 
+               RowBox[{"\<\"\\n\"\>", "\[Rule]", 
+                RowBox[{"-", "0.055431582`"}]}]}], "\[RightAssociation]"}], 
+             ",", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\"\\n\"\>", "\[Rule]", 
+                RowBox[{"-", "0.01665694`"}]}], ",", 
+               RowBox[{"\<\"Say\"\>", "\[Rule]", 
+                RowBox[{"-", "4.7041855`"}]}]}], "\[RightAssociation]"}], ",", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\"This\"\>", "\[Rule]", 
+                RowBox[{"-", "0.543867`"}]}], ",", 
+               RowBox[{"\<\"Yes\"\>", "\[Rule]", 
+                RowBox[{"-", "0.9576434`"}]}]}], "\[RightAssociation]"}], ",", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\" is\"\>", "\[Rule]", 
+                RowBox[{"-", "0.047616903`"}]}], ",", 
+               RowBox[{"\<\" indeed\"\>", "\[Rule]", 
+                RowBox[{"-", "3.6179616`"}]}]}], "\[RightAssociation]"}], ",", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\" a\"\>", "\[Rule]", 
+                RowBox[{"-", "3.7410355`"}]}], ",", 
+               RowBox[{"\<\" indeed\"\>", "\[Rule]", 
+                RowBox[{"-", "0.028082278`"}]}]}], "\[RightAssociation]"}], 
+             ",", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\" a\"\>", "\[Rule]", 
+                RowBox[{"-", "0.00022051518`"}]}], ",", 
+               RowBox[{"\<\" just\"\>", "\[Rule]", 
+                RowBox[{"-", "9.736041`"}]}]}], "\[RightAssociation]"}], ",", 
+             
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{
+               RowBox[{"\<\" test\"\>", "\[Rule]", 
+                RowBox[{"-", "0.00011237507`"}]}], ",", 
+               RowBox[{"\<\" \"\>", "\[Rule]", 
+                RowBox[{"-", "9.750326`"}]}]}], "\[RightAssociation]"}]}], 
+            "}"}]}], ",", 
+          RowBox[{"\<\"text_offset\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+            "18", ",", "19", ",", "20", ",", "24", ",", "27", ",", "34", ",", 
+             "36"}], "}"}]}]}], "\[RightAssociation]"}]}], ",", 
+       RowBox[{"\<\"finish_reason\"\>", "\[Rule]", "\<\"length\"\>"}]}], 
+      "\[RightAssociation]"}], "}"}]}], ",", 
+   RowBox[{"\<\"usage\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"prompt_tokens\"\>", "\[Rule]", "5"}], ",", 
+      RowBox[{"\<\"completion_tokens\"\>", "\[Rule]", "7"}], ",", 
+      RowBox[{"\<\"total_tokens\"\>", "\[Rule]", "12"}]}], 
+     "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.881291793805954*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"f949a10f-d147-4c7a-9101-0204735e22fe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ChristopherWolfram`OpenAILink`Request`OpenAIRequest", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<v1\>\"", ",", "\"\<completions\>\""}], "}"}], ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<model\>\"", " ", "->", " ", "\"\<foobar\>\""}], ",", " ", 
+     RowBox[{"\"\<prompt\>\"", " ", "->", " ", "\"\<Say this is a test\>\""}],
+      ",", " ", 
+     RowBox[{"\"\<temperature\>\"", " ", "->", " ", "0"}], ",", 
+     RowBox[{"\"\<max_tokens\>\"", " ", "->", " ", "7"}]}], "|>"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.881287222269661*^9, 3.8812872304045687`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"88f46595-2376-42b5-942f-e8ded11fd1ea"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ChristopherWolfram`OpenAILink`Request`OpenAIRequest", 
+   "openAIResponseFailureMessage", 
+   "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"That model does not exist\\\\\\\"\\\"}]\\).\"", 
+   2, 7, 3, 19217686508669814616, "Local", 
+   "ChristopherWolfram`OpenAILink`Request`OpenAIRequest"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{{3.881287222927844*^9, 3.8812872308336697`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"b40e4093-5d1d-4424-aa03-23529d315825"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Failure",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"That model does not exist\\\\\\\"\\\", \
+Function[Short[Slot[1], 5]]]\\).\"", HoldForm], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"application/json; charset=utf-8\"", "SummaryItem"]}]}},
+                     GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"application/json; charset=utf-8\"", "SummaryItem"]}]}},
+                     GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 32, 32, 34, 101, 114, 114, 
+                    111, 114, 34, 58, 32, 123, 10, 32, 32, 32, 32, 32, 32, 32,
+                     32, 34, 109, 101, 115, 115, 97, 103, 101, 34, 58, 32, 34,
+                     84, 104, 97, 116, 32, 109, 111, 100, 101, 108, 32, 100, 
+                    111, 101, 115, 32, 110, 111, 116, 32, 101, 120, 105, 115, 
+                    116, 34, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 116, 
+                    121, 112, 101, 34, 58, 32, 34, 105, 110, 118, 97, 108, 
+                    105, 100, 95, 114, 101, 113, 117, 101, 115, 116, 95, 101, 
+                    114, 114, 111, 114, 34, 44, 10, 32, 32, 32, 32, 32, 32, 
+                    32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 110, 117, 
+                    108, 108, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 99, 
+                    111, 100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32,
+                     32, 32, 125, 10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:20:30 GMT"}, {
+                    "Content-Type", "application/json; charset=utf-8"}, {
+                    "Content-Length", "158"}, {"Connection", "keep-alive"}, {
+                    "Vary", "Origin"}, {
+                    "X-Request-Id", "eb41c5969582a13953d3dfb2b7230c00"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}}, "StatusCode" -> 
+                    404, "Cookies" -> {}|>, CharacterEncoding -> Automatic], 
+                    Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"A request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"That model does not exist\\\\\\\"\\\", \
+Function[Short[Slot[1], 5]]]\\).\"", HoldForm], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"application/json; charset=utf-8\"", "SummaryItem"]}]}},
+                     GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"404\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Not Found\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"application/json; charset=utf-8\"", "SummaryItem"]}]}},
+                     GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 32, 32, 34, 101, 114, 114, 
+                    111, 114, 34, 58, 32, 123, 10, 32, 32, 32, 32, 32, 32, 32,
+                     32, 34, 109, 101, 115, 115, 97, 103, 101, 34, 58, 32, 34,
+                     84, 104, 97, 116, 32, 109, 111, 100, 101, 108, 32, 100, 
+                    111, 101, 115, 32, 110, 111, 116, 32, 101, 120, 105, 115, 
+                    116, 34, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 116, 
+                    121, 112, 101, 34, 58, 32, 34, 105, 110, 118, 97, 108, 
+                    105, 100, 95, 114, 101, 113, 117, 101, 115, 116, 95, 101, 
+                    114, 114, 111, 114, 34, 44, 10, 32, 32, 32, 32, 32, 32, 
+                    32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 110, 117, 
+                    108, 108, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 99, 
+                    111, 100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32,
+                     32, 32, 125, 10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:20:30 GMT"}, {
+                    "Content-Type", "application/json; charset=utf-8"}, {
+                    "Content-Length", "158"}, {"Connection", "keep-alive"}, {
+                    "Vary", "Origin"}, {
+                    "X-Request-Id", "eb41c5969582a13953d3dfb2b7230c00"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}}, "StatusCode" -> 
+                    404, "Cookies" -> {}|>, CharacterEncoding -> Automatic], 
+                    Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  Failure[
+  "OpenAIResponseFailure", <|
+   "MessageTemplate" :> 
+    MessageName[
+     ChristopherWolfram`OpenAILink`Request`OpenAIRequest, 
+      "openAIResponseFailureMessage"], 
+    "MessageParameters" -> {"That model does not exist"}, "HTTPResponse" -> 
+    HTTPResponse[
+      ByteArray[{123, 10, 32, 32, 32, 32, 34, 101, 114, 114, 111, 114, 34, 58,
+        32, 123, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 109, 101, 115, 115, 
+       97, 103, 101, 34, 58, 32, 34, 84, 104, 97, 116, 32, 109, 111, 100, 101,
+        108, 32, 100, 111, 101, 115, 32, 110, 111, 116, 32, 101, 120, 105, 
+       115, 116, 34, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 116, 121, 
+       112, 101, 34, 58, 32, 34, 105, 110, 118, 97, 108, 105, 100, 95, 114, 
+       101, 113, 117, 101, 115, 116, 95, 101, 114, 114, 111, 114, 34, 44, 10, 
+       32, 32, 32, 32, 32, 32, 32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 
+       110, 117, 108, 108, 44, 10, 32, 32, 32, 32, 32, 32, 32, 32, 34, 99, 
+       111, 100, 101, 34, 58, 32, 110, 117, 108, 108, 10, 32, 32, 32, 32, 125,
+        10, 125, 10}], <|
+      "Headers" -> {{"Date", "Thu, 29 Dec 2022 07:20:30 GMT"}, {
+         "Content-Type", "application/json; charset=utf-8"}, {
+         "Content-Length", "158"}, {"Connection", "keep-alive"}, {
+         "Vary", "Origin"}, {
+         "X-Request-Id", "eb41c5969582a13953d3dfb2b7230c00"}, {
+         "Strict-Transport-Security", "max-age=15724800; includeSubDomains"}},
+        "StatusCode" -> 404, "Cookies" -> {}|>, CharacterEncoding -> 
+      Automatic]|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.8812872229781647`*^9, 3.881287230862821*^9}},
+ CellLabel->"Out[7]=",ExpressionUUID->"88243ff6-7e2b-4c76-93bf-f62d371c7990"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAICompletion", "[", 
+  RowBox[{"\"\<Say this is a test\>\"", ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8812926696778183`*^9, 3.8812926708848658`*^9}, {
+  3.881292704746636*^9, 3.881292706915536*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"330ef008-1953-4647-87bf-f874d8d3743b"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"id\"\>", 
+    "\[Rule]", "\<\"cmpl-6SivdzZBI8hyRBjWKRedaAEhOtcA5\"\>"}], ",", 
+   RowBox[{"\<\"object\"\>", "\[Rule]", "\<\"text_completion\"\>"}], ",", 
+   RowBox[{"\<\"created\"\>", "\[Rule]", "1672303909"}], ",", 
+   RowBox[{"\<\"model\"\>", "\[Rule]", "\<\"text-davinci-003\"\>"}], ",", 
+   RowBox[{"\<\"choices\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"text\"\>", 
+        "\[Rule]", "\<\"\\n\\nYes, this is a test.\"\>"}], ",", 
+       RowBox[{"\<\"index\"\>", "\[Rule]", "0"}], ",", 
+       RowBox[{"\<\"logprobs\"\>", "\[Rule]", "Null"}], ",", 
+       RowBox[{"\<\"finish_reason\"\>", "\[Rule]", "\<\"stop\"\>"}]}], 
+      "\[RightAssociation]"}], "}"}]}], ",", 
+   RowBox[{"\<\"usage\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"prompt_tokens\"\>", "\[Rule]", "5"}], ",", 
+      RowBox[{"\<\"completion_tokens\"\>", "\[Rule]", "9"}], ",", 
+      RowBox[{"\<\"total_tokens\"\>", "\[Rule]", "14"}]}], 
+     "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.8812927054672728`*^9, 3.8812927104314623`*^9}},
+ CellLabel->"Out[4]=",ExpressionUUID->"86525668-e250-4475-a6cc-20b87ec9b74f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenAICompletion", "[", 
+  RowBox[{"\"\<Say this is a test\>\"", ",", "0"}], "]"}]], "Input",
+ CellChangeTimes->{{3.881293108773704*^9, 3.881293108869843*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"0502fd8c-0921-4afe-8ec0-6a183eb9d82c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OpenAICompletion", "openAIResponseFailureMessage", 
+   "\"Request to the OpenAI API failed with message: \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"0 is less than the minimum of 1 - \
+'n'\\\\\\\"\\\"}]\\).\"", 2, 5, 1, 19217722553569649616, "Local", 
+   "ChristopherWolfram`OpenAILink`OpenAICompletion"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{3.881293110035529*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"feda7fd8-ed5c-4ae2-a2e0-b51aab74a16d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Failure",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"Request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"0 is less than the minimum of 1 - \
+'n'\\\\\\\"\\\", Function[Short[Slot[1], 5]]]\\).\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"400\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Bad Request\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"400\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Bad Request\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 
+                    34, 58, 32, 123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 
+                    115, 97, 103, 101, 34, 58, 32, 34, 48, 32, 105, 115, 32, 
+                    108, 101, 115, 115, 32, 116, 104, 97, 110, 32, 116, 104, 
+                    101, 32, 109, 105, 110, 105, 109, 117, 109, 32, 111, 102, 
+                    32, 49, 32, 45, 32, 39, 110, 39, 34, 44, 10, 32, 32, 32, 
+                    32, 34, 116, 121, 112, 101, 34, 58, 32, 34, 105, 110, 118,
+                     97, 108, 105, 100, 95, 114, 101, 113, 117, 101, 115, 116,
+                     95, 101, 114, 114, 111, 114, 34, 44, 10, 32, 32, 32, 32, 
+                    34, 112, 97, 114, 97, 109, 34, 58, 32, 110, 117, 108, 108,
+                     44, 10, 32, 32, 32, 32, 34, 99, 111, 100, 101, 34, 58, 
+                    32, 110, 117, 108, 108, 10, 32, 32, 125, 10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 08:58:29 GMT"}, {
+                    "Content-Type", "application/json"}, {
+                    "Content-Length", "150"}, {"Connection", "keep-alive"}, {
+                    "Access-Control-Allow-Origin", "*"}, {
+                    "Openai-Organization", "user-9gdghkvwaa32slgg4ksa3ycb"}, {
+                    "Openai-Processing-Ms", "207"}, {
+                    "Openai-Version", "2020-10-01"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}, {
+                    "X-Request-Id", "9e07fb8ceb5e9b36fba0290ec82bc4ec"}}, 
+                    "StatusCode" -> 400, "Cookies" -> {}|>, CharacterEncoding -> 
+                    Automatic], Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                  "\"Request to the OpenAI API failed with message: \
+\\!\\(\\*TagBox[\\\"\\\\\\\"0 is less than the minimum of 1 - \
+'n'\\\\\\\"\\\", Function[Short[Slot[1], 5]]]\\).\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox["\"OpenAIResponseFailure\"", HoldForm], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"HTTPResponse\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   InterpretationBox[
+                    RowBox[{
+                    TagBox["HTTPResponse", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"400\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Bad Request\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    GraphicsBox[{
+                    RGBColor[1, 0.5, 0], 
+                    DiskBox[{0, 0}], 
+                    InsetBox[
+                    FormBox[
+                    StyleBox["\"400\"", 
+                    Directive[10, 
+                    GrayLevel[1], Bold], StripOnInput -> False], 
+                    TraditionalForm], 
+                    Scaled[{0.53, 0.48}]]}, ImageSize -> 
+                    Dynamic[{Automatic, (3 CurrentValue["FontCapHeight"])/
+                    AbsoluteCurrentValue[Magnification]}], Background -> 
+                    None], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Bad Request\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Content type: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"application/json\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                    HTTPResponse[
+                    
+                    ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 
+                    34, 58, 32, 123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 
+                    115, 97, 103, 101, 34, 58, 32, 34, 48, 32, 105, 115, 32, 
+                    108, 101, 115, 115, 32, 116, 104, 97, 110, 32, 116, 104, 
+                    101, 32, 109, 105, 110, 105, 109, 117, 109, 32, 111, 102, 
+                    32, 49, 32, 45, 32, 39, 110, 39, 34, 44, 10, 32, 32, 32, 
+                    32, 34, 116, 121, 112, 101, 34, 58, 32, 34, 105, 110, 118,
+                     97, 108, 105, 100, 95, 114, 101, 113, 117, 101, 115, 116,
+                     95, 101, 114, 114, 111, 114, 34, 44, 10, 32, 32, 32, 32, 
+                    34, 112, 97, 114, 97, 109, 34, 58, 32, 110, 117, 108, 108,
+                     44, 10, 32, 32, 32, 32, 34, 99, 111, 100, 101, 34, 58, 
+                    32, 110, 117, 108, 108, 10, 32, 32, 125, 10, 125, 10}], <|
+                    "Headers" -> {{"Date", "Thu, 29 Dec 2022 08:58:29 GMT"}, {
+                    "Content-Type", "application/json"}, {
+                    "Content-Length", "150"}, {"Connection", "keep-alive"}, {
+                    "Access-Control-Allow-Origin", "*"}, {
+                    "Openai-Organization", "user-9gdghkvwaa32slgg4ksa3ycb"}, {
+                    "Openai-Processing-Ms", "207"}, {
+                    "Openai-Version", "2020-10-01"}, {
+                    "Strict-Transport-Security", 
+                    "max-age=15724800; includeSubDomains"}, {
+                    "X-Request-Id", "9e07fb8ceb5e9b36fba0290ec82bc4ec"}}, 
+                    "StatusCode" -> 400, "Cookies" -> {}|>, CharacterEncoding -> 
+                    Automatic], Selectable -> False, Editable -> False, 
+                    SelectWithContents -> True], HoldForm], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  Failure[
+  "OpenAIResponseFailure", <|
+   "MessageTemplate" :> 
+    MessageName[
+     ChristopherWolfram`OpenAILink`OpenAICompletion, 
+      "openAIResponseFailureMessage"], 
+    "MessageParameters" -> {"0 is less than the minimum of 1 - 'n'"}, 
+    "HTTPResponse" -> HTTPResponse[
+      ByteArray[{123, 10, 32, 32, 34, 101, 114, 114, 111, 114, 34, 58, 32, 
+       123, 10, 32, 32, 32, 32, 34, 109, 101, 115, 115, 97, 103, 101, 34, 58, 
+       32, 34, 48, 32, 105, 115, 32, 108, 101, 115, 115, 32, 116, 104, 97, 
+       110, 32, 116, 104, 101, 32, 109, 105, 110, 105, 109, 117, 109, 32, 111,
+        102, 32, 49, 32, 45, 32, 39, 110, 39, 34, 44, 10, 32, 32, 32, 32, 34, 
+       116, 121, 112, 101, 34, 58, 32, 34, 105, 110, 118, 97, 108, 105, 100, 
+       95, 114, 101, 113, 117, 101, 115, 116, 95, 101, 114, 114, 111, 114, 34,
+        44, 10, 32, 32, 32, 32, 34, 112, 97, 114, 97, 109, 34, 58, 32, 110, 
+       117, 108, 108, 44, 10, 32, 32, 32, 32, 34, 99, 111, 100, 101, 34, 58, 
+       32, 110, 117, 108, 108, 10, 32, 32, 125, 10, 125, 10}], <|
+      "Headers" -> {{"Date", "Thu, 29 Dec 2022 08:58:29 GMT"}, {
+         "Content-Type", "application/json"}, {"Content-Length", "150"}, {
+         "Connection", "keep-alive"}, {"Access-Control-Allow-Origin", "*"}, {
+         "Openai-Organization", "user-9gdghkvwaa32slgg4ksa3ycb"}, {
+         "Openai-Processing-Ms", "207"}, {"Openai-Version", "2020-10-01"}, {
+         "Strict-Transport-Security", 
+          "max-age=15724800; includeSubDomains"}, {
+         "X-Request-Id", "9e07fb8ceb5e9b36fba0290ec82bc4ec"}}, "StatusCode" -> 
+       400, "Cookies" -> {}|>, CharacterEncoding -> Automatic]|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.881293110093151*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"8a467ab4-a718-4391-968d-1b41c5d2c379"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 897},
+WindowMargins->{{113, Automatic}, {Automatic, 48}},
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fe99fa1f-d83f-4a12-8400-553da7a3088c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 176, 2, 30, "Input",ExpressionUUID->"917b280c-b7b5-446e-9da2-96b212833af8"],
+Cell[CellGroupData[{
+Cell[759, 26, 151, 3, 67, "Section",ExpressionUUID->"df524804-4a81-4edb-bd68-ffb72f280038"],
+Cell[913, 31, 377, 9, 46, "Input",ExpressionUUID->"062b83ca-6d7a-4b5f-ba58-bef2f57b6101",
+ InitializationCell->True,
+ CellID->996717066],
+Cell[1293, 42, 253, 6, 46, "Input",ExpressionUUID->"61b43c22-6790-400d-a4c0-3cd638f97e2b",
+ InitializationCell->True,
+ CellID->172764492]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1583, 53, 158, 3, 67, "Section",ExpressionUUID->"84a5c6f1-d2c9-448b-a2c6-526760a0f506"],
+Cell[CellGroupData[{
+Cell[1766, 60, 204, 3, 30, "Input",ExpressionUUID->"4f7f9548-04c4-4008-aaf0-64ab81b0e8e0"],
+Cell[1973, 65, 2910, 50, 413, "Output",ExpressionUUID->"b11fe157-9cdf-4b11-b69a-cc9a2350ecd3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4920, 120, 441, 8, 30, "Input",ExpressionUUID->"1e37fcf3-7227-4029-803b-52624e83c897"],
+Cell[5364, 130, 326, 5, 34, "Output",ExpressionUUID->"d693bccc-03c8-4e37-9fca-ff1c94fef31b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5727, 140, 357, 6, 30, "Input",ExpressionUUID->"aa0b2b6e-2008-4aea-bda0-40d006d32662"],
+Cell[6087, 148, 4920, 98, 110, "Output",ExpressionUUID->"62a6f3fb-9b50-40e7-af24-a8488ab0ab04"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11044, 251, 502, 11, 52, "Input",ExpressionUUID->"9a20eadc-9a5e-4d54-96f8-55344d5b1180"],
+Cell[11549, 264, 5207, 102, 196, "Output",ExpressionUUID->"d2677dd7-3352-4e56-8547-26ced35ce024"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16793, 371, 230, 3, 30, "Input",ExpressionUUID->"0002d1a3-ce93-42e7-9219-65c63355e613"],
+Cell[17026, 376, 263, 3, 119, "Output",ExpressionUUID->"ad6a0e0d-1067-4b05-b31f-c2fab9d60193"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17326, 384, 228, 3, 30, "Input",ExpressionUUID->"89eda191-d7fc-48d4-bf5d-4ee0a8cec72a"],
+Cell[17557, 389, 394, 8, 37, "Output",ExpressionUUID->"fdc2c3d6-f376-400b-83f1-23fdb5d6ae4a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17988, 402, 339, 6, 30, "Input",ExpressionUUID->"10ac661e-b093-4671-92f4-dd246b1b14a0"],
+Cell[18330, 410, 888, 18, 80, "Output",ExpressionUUID->"808b545e-e894-45ce-bdfc-a45d26e83315"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19255, 433, 397, 7, 30, "Input",ExpressionUUID->"ce665ac8-a2ee-4aee-b4c6-516b508b30a8"],
+Cell[19655, 442, 1742, 38, 147, "Output",ExpressionUUID->"e731c77f-d4ba-4381-99f7-5022249953a3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21434, 485, 410, 8, 52, "Input",ExpressionUUID->"f3826783-0830-498c-bf63-692313a0943a"],
+Cell[21847, 495, 3542, 76, 282, "Output",ExpressionUUID->"a99781d9-c609-4979-b0f4-6b7c875d1bfe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25426, 576, 347, 6, 30, "Input",ExpressionUUID->"74243d03-64c6-4434-b2dc-bc32d56c2ed5"],
+Cell[25776, 584, 649, 14, 46, "Message",ExpressionUUID->"7e75246f-7ceb-4173-a905-973d0a4d93a8"],
+Cell[26428, 600, 18427, 349, 103, "Output",ExpressionUUID->"b699b978-8501-4bad-b2f0-c3fc577b698d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44892, 954, 699, 15, 73, "Input",ExpressionUUID->"c5dfa87f-ec80-43c4-8e87-975eed7ba331"],
+Cell[45594, 971, 1280, 26, 127, "Output",ExpressionUUID->"4eddc93f-c823-44e6-a1b4-d61cddae82c8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46911, 1002, 751, 15, 73, "Input",ExpressionUUID->"27b01d2a-dccd-4b1b-8f73-93db7bf27226"],
+Cell[47665, 1019, 4606, 98, 325, "Output",ExpressionUUID->"f949a10f-d147-4c7a-9101-0204735e22fe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52308, 1122, 685, 14, 73, "Input",ExpressionUUID->"88f46595-2376-42b5-942f-e8ded11fd1ea"],
+Cell[52996, 1138, 574, 12, 46, "Message",ExpressionUUID->"b40e4093-5d1d-4424-aa03-23529d315825"],
+Cell[53573, 1152, 18450, 349, 101, "Output",ExpressionUUID->"88243ff6-7e2b-4c76-93bf-f62d371c7990"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72060, 1506, 314, 5, 30, "Input",ExpressionUUID->"330ef008-1953-4647-87bf-f874d8d3743b"],
+Cell[72377, 1513, 1305, 26, 127, "Output",ExpressionUUID->"86525668-e250-4475-a6cc-20b87ec9b74f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73719, 1544, 261, 4, 30, "Input",ExpressionUUID->"0502fd8c-0921-4afe-8ec0-6a183eb9d82c"],
+Cell[73983, 1550, 512, 11, 28, "Message",ExpressionUUID->"feda7fd8-ed5c-4ae2-a2e0-b51aab74a16d"],
+Cell[74498, 1563, 18740, 351, 102, "Output",ExpressionUUID->"8a467ab4-a718-4391-968d-1b41c5d2c379"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
