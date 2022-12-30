@@ -30,7 +30,7 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 *)
 
 Options[OpenAICompletion] = {
-	OpenAIAPIKey         :> $OpenAIAPIKey,
+	OpenAIKey            :> $OpenAIKey,
 	OpenAIUser           :> $OpenAIUser,
 	OpenAIModel          -> "text-davinci-003",
 	OpenAITemperature    -> Automatic,

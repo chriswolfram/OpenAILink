@@ -12,7 +12,7 @@ Needs["ChristopherWolfram`OpenAILink`"]
 	SystemCredential is more secure, so that is the top-priority option here.
 *)
 
-$OpenAIAPIKey :=
+$OpenAIKey :=
 	With[{key = SystemCredential["OPENAI_API_KEY"]},
 		If[!MissingQ[key],
 			key,

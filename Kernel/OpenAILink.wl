@@ -1,10 +1,10 @@
 BeginPackage["ChristopherWolfram`OpenAILink`"];
 
 
-$OpenAIAPIKey
+$OpenAIKey
 $OpenAIUser
 
-OpenAIAPIKey
+OpenAIKey
 OpenAIUser
 OpenAIModel
 OpenAITemperature

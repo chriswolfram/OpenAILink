@@ -21,9 +21,9 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 *)
 
 Options[OpenAICreateImage] = {
-	OpenAIAPIKey :> $OpenAIAPIKey,
-	OpenAIUser   :> $OpenAIUser,
-	ImageSize    -> Automatic
+	OpenAIKey  :> $OpenAIKey,
+	OpenAIUser :> $OpenAIUser,
+	ImageSize  -> Automatic
 };
 
 OpenAICreateImage[prompt_String, n_Integer, opts:OptionsPattern[]] :=

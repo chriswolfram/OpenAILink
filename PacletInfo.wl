@@ -13,7 +13,14 @@ PacletObject[
       {
         "Kernel",
         "Root" -> "Kernel",
-        "Context" -> {"ChristopherWolfram`OpenAILink`"}
+        "Context" -> {"ChristopherWolfram`OpenAILink`"},
+        "Symbols" -> {
+          "ChristopherWolfram`OpenAILink`$OpenAIKey",
+          "ChristopherWolfram`OpenAILink`$OpenAIUser",
+          "ChristopherWolfram`OpenAILink`OpenAICompletion",
+          "ChristopherWolfram`OpenAILink`OpenAICreateImage",
+          "ChristopherWolfram`OpenAILink`OpenAIModels"
+        }
       },
       {
         "Documentation",

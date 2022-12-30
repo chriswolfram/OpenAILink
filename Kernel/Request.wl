@@ -27,14 +27,14 @@ Needs["ChristopherWolfram`OpenAILink`Constants`"]
 *)
 
 Options[OpenAIRequest] = {
-	OpenAIAPIKey :> $OpenAIAPIKey,
-	OpenAIUser   :> $OpenAIUser
+	OpenAIKey  :> $OpenAIKey,
+	OpenAIUser :> $OpenAIUser
 };
 
 OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 	Enclose[Module[{apiKey, user, bodyRule, resp},
 
-		apiKey = OptionValue[head, opts, OpenAIAPIKey];
+		apiKey = OptionValue[head, opts, OpenAIKey];
 		user = OptionValue[head, opts, OpenAIUser];
 
 		bodyRule =

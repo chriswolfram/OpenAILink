@@ -18,8 +18,8 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 *)
 
 Options[OpenAIModels] = {
-	OpenAIAPIKey         :> $OpenAIAPIKey,
-	OpenAIUser           :> $OpenAIUser
+	OpenAIKey  :> $OpenAIKey,
+	OpenAIUser :> $OpenAIUser
 };
 
 OpenAIModels[opts:OptionsPattern[]] :=
