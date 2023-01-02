@@ -62,7 +62,7 @@ responseData[
 	] :=
 	<|
 		"Embedding" -> embedding,
-		"Usage" -> usage
+		"ResponseUsage" -> usage
 	|>
 
 responseData[data_] :=
@@ -72,8 +72,8 @@ responseData[data_] :=
 getResponseDataProperty[respData_, "Embedding"] :=
 	respData["Embedding"]
 
-getResponseDataProperty[respData_, "Usage"] :=
-	conformUsage[respData["Usage"]]
+getResponseDataProperty[respData_, "ResponseUsage"] :=
+	conformUsage[respData["ResponseUsage"]]
 
 getResponseDataProperty[respData_, props_List] :=
 	getResponseDataProperty[respData, #] &/@ props
