@@ -1,6 +1,7 @@
 BeginPackage["ChristopherWolfram`OpenAILink`Request`"];
 
 OpenAIRequest
+ConformUsage
 
 Begin["`Private`"];
 

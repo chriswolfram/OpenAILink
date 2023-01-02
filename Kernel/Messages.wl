@@ -26,6 +26,10 @@ OpenAICompletionObject::invProp = "`1` is not a known property of an OpenAICompl
 OpenAICreateImage::invOpenAICreateImageResponse = "TheOpenAI API returned invalid image specification `1`.";
 OpenAICreateImage::invImageSize = "Invalid ImageSize specification `1`. Expected Small, Medium, Large, or a list of the target width and height.";
 
+OpenAIEmbedding::invOpenAIEmbeddingResponse = "The OpenAI API returned invalid embedding specification `1`.";
+OpenAIEmbedding::invProp = "`1` is not a known property for OpenAIEmbedding.";
+OpenAIEmbedding::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
+
 
 End[];
 EndPackage[];
