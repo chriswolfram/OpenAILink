@@ -47,6 +47,9 @@ OpenAIEmbedding[str_String, opts:OptionsPattern[]] :=
 conformEmbedding[data_, propSpec_] :=
 	Enclose[getResponseDataProperty[Confirm@responseData[data], propSpec], "InheritedFailure"]
 
+conformEmbedding[fail_?FailureQ, propSpec_] :=
+	fail
+
 
 responseData[
 	KeyValuePattern[{

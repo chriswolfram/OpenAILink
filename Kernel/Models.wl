@@ -49,6 +49,9 @@ conformModels[data_] :=
 		)&
 	]
 
+conformModels[fail_?FailureQ] :=
+	fail
+
 
 
 End[];

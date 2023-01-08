@@ -81,6 +81,9 @@ conformImages[resp_] :=
 		invalidCreateImageResponse[resp]&
 	]
 
+conformImages[fail_?FailureQ] :=
+	fail
+
 conformSingleImage[imgResp_] :=
 	Enclose[
 		Confirm[ImportByteArray[ConfirmBy[BaseDecode[Confirm[imgResp["b64_json"]]], ByteArrayQ]], ImageQ],

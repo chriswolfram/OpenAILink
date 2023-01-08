@@ -38,6 +38,8 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 		apiKey = OptionValue[head, opts, OpenAIKey];
 		user = OptionValue[head, opts, OpenAIUser];
 
+		ConfirmBy[apiKey, StringQ, Message[head::invalidOpenAIAPIKey, apiKey]];
+
 		bodyRule =
 			If[body === None,
 				Nothing,

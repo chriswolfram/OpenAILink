@@ -101,6 +101,9 @@ conformCompletion[data_, propSpec_, promptSuffix_] :=
 		completionResponseError[data, #]&
 	]
 
+conformCompletion[fail_?FailureQ, propSpec_, promptSuffix_] :=
+	fail
+
 
 conformCompletionChoice[choice_, {prompt_, suffix_}, model_, usage_, All] :=
 	Enclose[
