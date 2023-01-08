@@ -29,6 +29,7 @@ OpenAIModels::invOpenAIModelResponse = "The OpenAI API returned invalid model sp
 OpenAICompletion::invOpenAICompletionResponse = "The OpenAI API returned invalid completion specification `1`.";
 OpenAICompletion::invPromptSpec = "Invalid prompt specification `1`. Expected a string or a pair of strings.";
 OpenAICompletion::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
+OpenAICompletion::invProbResponse = "Request to the OpenAI API returned an invalid report of token probabilities `1`.";
 
 OpenAICompletionObject::invOpenAICompletionObject = "Invalid OpenAICompletionObject with data `1`.";
 OpenAICompletionObject::invProp = "`1` is not a known property of an OpenAICompletionObject.";

@@ -61,7 +61,8 @@ OpenAICompletion[promptSpec_, propSpec: _String | {___String} | All, n_Integer, 
 						"temperature" -> OptionValue[OpenAITemperature],
 						"top_p" -> OptionValue[OpenAITopProbability],
 						"max_tokens" -> OptionValue[OpenAITokenLimit],
-						"stop" -> OptionValue[OpenAIStopTokens]
+						"stop" -> OptionValue[OpenAIStopTokens],
+						"logprobs" -> 5
 					|>,
 					# =!= Automatic&
 				],
@@ -113,7 +114,8 @@ conformCompletionChoice[choice_, {prompt_, suffix_}, model_, usage_, All] :=
 			"Completion" -> Confirm@choice["text"],
 			"Model" -> model,
 			"FinishReason" -> Replace[Confirm@choice["finish_reason"], {"length" -> "Length", "stop" -> "Stop"}],
-			"ResponseUsage" -> usage
+			"ResponseUsage" -> usage,
+			"LogProbabilities" -> Confirm@conformLogProbabilities[choice]
 		|>],
 		completionResponseError[data, #]&
 	]
@@ -130,6 +132,17 @@ conformCompletionChoice[choice_, promptSuffix_, model_, usage_, prop_] :=
 	First@conformCompletionChoice[choice, promptSuffix, model, usage, {prop}]
 
 
+conformLogProbabilities[KeyValuePattern[{"logprobs" -> KeyValuePattern[{"top_logprobs" -> probs:{___?AssociationQ}}]}]] :=
+	KeyMap[Replace["<|endoftext|>" -> EndOfString]] /@ probs
+
+conformLogProbabilities[choice_] :=
+	Failure["InvalidProbabilitiesResponse", <|
+		"MessageTemplate" :> OpenAICompletion::invProbResponse,
+		"MessageParameters" -> {choice["logprobs"]},
+		"Response" -> choice
+	|>]
+
+
 conformUsage[KeyValuePattern[{
 		"prompt_tokens" -> pTokens_Integer,
 		"completion_tokens" -> cTokens_Integer,
@@ -144,7 +157,7 @@ conformUsage[KeyValuePattern[{
 conformUsage[usage_] :=
 	Failure["InvalidUsageResponse", <|
 		"MessageTemplate" :> OpenAICompletion::invUsageResponse,
-		"MessageParameters" -> usage
+		"MessageParameters" -> {usage}
 	|>]
 
 
@@ -175,7 +188,8 @@ HoldPattern[OpenAICompletionObject][data:Except[KeyValuePattern[{
 		"Suffix" -> _String | Automatic,
 		"Model" -> _,
 		"FinishReason" -> _,
-		"ResponseUsage" -> _
+		"ResponseUsage" -> _,
+		"LogProbabilities" -> {___?AssociationQ}
 	}]]] :=
 	(
 		Message[OpenAICompletionObject::invOpenAICompletionObject, data];
@@ -198,9 +212,12 @@ completion_OpenAICompletionObject["Suffix"] := completion["Data"]["Suffix"]
 completion_OpenAICompletionObject["Model"] := completion["Data"]["Model"]
 completion_OpenAICompletionObject["FinishReason"] := completion["Data"]["FinishReason"]
 completion_OpenAICompletionObject["ResponseUsage"] := completion["Data"]["ResponseUsage"]
+completion_OpenAICompletionObject["LogProbabilities"] := completion["Data"]["LogProbabilities"]
 
 completion_OpenAICompletionObject["CompletedPrompt"] :=
 	completion["Prompt"] <> completion["Completion"] <> Replace[completion["Suffix"], Automatic -> ""]
+
+completion_OpenAICompletionObject["Probabilities"] := Exp@completion["LogProbabilities"]
 
 
 completion_OpenAICompletionObject["Properties"] :=
@@ -211,7 +228,9 @@ completion_OpenAICompletionObject["Properties"] :=
 		"Suffix",
 		"Model",
 		"FinishReason",
-		"ResponseUsage"
+		"ResponseUsage",
+		"LogProbabilities",
+		"Probabilities"
 	}
 
 completion_OpenAICompletionObject[prop_] :=
