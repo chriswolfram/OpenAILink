@@ -76,7 +76,7 @@ conformResponse[head_, resp_] :=
 	Catch@Module[{statusCode, body},
 
 		statusCode = resp["StatusCode"];
-		body = Quiet@Import[resp, "RawJSON"];
+		body = ImportString[ToString[resp["Body"],CharacterEncoding->"UTF8"], "RawJSON"];
 
 		If[FailureQ[body],
 			Throw@responseFailureCode[head, resp, statusCode]
