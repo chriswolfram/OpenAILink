@@ -8,11 +8,13 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 OpenAIRequest::openAIResponseFailureCode =
 OpenAICompletion::openAIResponseFailureCode =
-OpenAICreateImage::openAIResponseFailureCode = "Request to the OpenAI API failed with status code `1`.";
+OpenAICreateImage::openAIResponseFailureCode =
+OpenAIEmbedding::openAIResponseFailureCode = "Request to the OpenAI API failed with status code `1`.";
 
 OpenAIRequest::openAIResponseFailureMessage =
 OpenAICompletion::openAIResponseFailureMessage =
-OpenAICreateImage::openAIResponseFailureMessage = "Request to the OpenAI API failed with message: `1`.";
+OpenAICreateImage::openAIResponseFailureMessage =
+OpenAIEmbedding::openAIResponseFailureMessage = "Request to the OpenAI API failed with message: `1`.";
 
 OpenAIModels::invOpenAIModelResponse = "The OpenAI API returned invalid model specification `1`.";
 
