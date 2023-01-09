@@ -83,11 +83,11 @@ getResponseDataProperty[respData_, props_List] :=
 
 getResponseDataProperty[respData_, propSpec_] :=
 	(
-		Message[OpenAIEmbedding::invProp, prop];
+		Message[OpenAIEmbedding::invProp, propSpec];
 		Failure["InvalidProperty", <|
 			"MessageTemplate" :> OpenAIEmbedding::invProp,
-			"MessageParameters" -> {prop},
-			"Property" -> prop,
+			"MessageParameters" -> {propSpec},
+			"Property" -> propSpec,
 			"ResponseData" -> respData
 		|>]
 	)
