@@ -43,7 +43,7 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 		bodyRule =
 			If[body === None,
 				Nothing,
-				"Body" -> Confirm@ExportString[If[user =!= None, Append[body, "user" -> user], body], "JSON"]
+				"Body" -> Confirm@ExportByteArray[If[user =!= None, Append[body, "user" -> user], body], "JSON"]
 			];
 
 		resp = URLRead[
