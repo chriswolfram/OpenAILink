@@ -2,6 +2,7 @@ BeginPackage["ChristopherWolfram`OpenAILink`Request`"];
 
 OpenAIRequest
 ConformUsage
+ConformResponse
 
 Begin["`Private`"];
 
@@ -38,12 +39,18 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 		apiKey = OptionValue[head, opts, OpenAIKey];
 		user = OptionValue[head, opts, OpenAIUser];
 
-		ConfirmBy[apiKey, StringQ, Message[head::invalidOpenAIAPIKey, apiKey]];
+		ConfirmBy[apiKey, StringQ,
+			Message[head::invalidOpenAIAPIKey, apiKey];
+			Failure["InvalidOpenAIKey", <|
+				"MessageTemplace" :> head::invalidOpenAIAPIKey.
+				"MessageParameters" -> {apiKey}
+			|>]
+		];
 
 		bodyRule =
 			If[body === None,
 				Nothing,
-				"Body" -> Confirm@ExportByteArray[If[user =!= None, Append[body, "user" -> user], body], "JSON"]
+				"Body" -> Confirm[ExportByteArray[If[user =!= None, Append[body, "user" -> user], body], "JSON"], $Failed]
 			];
 
 		resp = URLRead[
@@ -60,19 +67,19 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 			|>
 		];
 
-		conformResponse[head, resp]
+		ConformResponse[head, resp]
 
-	], $Failed&]
+	], "InheritedFailure"]
 
 
 (*
-	conformResponse[head, resp]
+	ConformResponse[head, resp]
 		takes an HTTPResponse and returns the contained JSON data. Returns a Failure if the request failed.
 
 		head is used for messages.
 *)
 
-conformResponse[head_, resp_] :=
+ConformResponse[head_, resp_] :=
 	Catch@Module[{statusCode, body},
 
 		statusCode = resp["StatusCode"];
