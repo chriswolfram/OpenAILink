@@ -10321,6 +10321,7 @@ excluded using ",
  TaggingRules->{"TemplateGroupName" -> "ExampleInitialization"},
  CellTags->{
   "ExampleInitialization", "Initialization for Examples", "TemplateCellGroup"},
+ CellLabel->"In[1]:=",
  CellID->468286435,ExpressionUUID->"1f03e04d-9bc4-4f6e-afd2-7d52066cbda5"],
 
 Cell[BoxData[
@@ -10329,6 +10330,7 @@ Cell[BoxData[
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input", "Excluded",
  TaggingRules->{},
  InitializationCell->True,
+ CellLabel->"In[1]:=",
  CellID->996717066,ExpressionUUID->"f458dbc3-9318-408c-8bd8-37cc97dfdfa8"],
 
 Cell[BoxData[
@@ -10337,6 +10339,7 @@ Cell[BoxData[
   ";"}]], "Input", "Excluded",
  TaggingRules->{},
  InitializationCell->True,
+ CellLabel->"In[2]:=",
  CellID->172764492,ExpressionUUID->"70ea28a9-a970-4222-b00a-273f0567675d"]
 }, Open  ]],
 
@@ -19906,8 +19909,45 @@ Cell["GPT3", "Item",
        WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
        SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
    PassEventsDown -> False, PassEventsUp -> False},
- CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}, {
+  3.8882688726979513`*^9, 3.88826887825007*^9}},
  CellID->1168438417,ExpressionUUID->"cfaa0dfc-bb66-4dea-9987-dd7a3d4982d0"],
+
+Cell["GPT-3", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}, {
+  3.8882688726979513`*^9, 3.888268880327833*^9}},
+ CellID->1834825088,ExpressionUUID->"47378b72-0155-451b-90ea-2f8accede64f"],
+
+Cell["GPT4", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}, {
+  3.888268872983757*^9, 3.8882688814339333`*^9}},
+ CellID->1174189997,ExpressionUUID->"362cd093-aca2-4d5c-92ff-168054094c43"],
+
+Cell["GPT-4", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.881339314075436*^9, 3.8813393317652473`*^9}, {
+  3.888268872983757*^9, 3.888268882383995*^9}},
+ CellID->637752753,ExpressionUUID->"85799dbc-397a-44ba-9ba5-f40529a836e0"],
 
 Cell["ChatGPT", "Item",
  TaggingRules->{},
@@ -20703,7 +20743,6 @@ Cell[BoxData[
          StyleBox[
           TemplateBox[{
             CheckboxBox["Scheduled", {False, "Scheduled"}], "\" \"", 
-            
             TemplateBox[{"\"Scheduled\"", "\"Scheduled task\""}, 
              "PrettyTooltipTemplate"]},
            "RowDefault"],
@@ -21717,8 +21756,8 @@ that are otherwise beyond the scope of the paclet documentation.",
 
 Cell["\<\
 This is still a work-in-progress and is missing connections to a few of \
-OpenAI's APIs. In particular, it is missing support for embeddings, edits, \
-moderations, and the fine-tuning system.\
+OpenAI's APIs. In particular, it is missing support for edits, moderations, \
+and the fine-tuning system.\
 \>", "Text",
  TaggingRules->{},
  CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
@@ -21727,14 +21766,15 @@ moderations, and the fine-tuning system.\
        WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
        SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
    PassEventsDown -> False, PassEventsUp -> False},
- CellChangeTimes->{{3.8813395309042377`*^9, 3.881339620085767*^9}},
+ CellChangeTimes->{{3.8813395309042377`*^9, 3.881339620085767*^9}, {
+  3.888268899825206*^9, 3.88826890012105*^9}},
  CellTags->{"DefaultContent", "TabNext"},
  CellID->908162033,ExpressionUUID->"cd7befd0-6793-4689-b23b-54d72cf57b5a"]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1066.5, 859.5},
-WindowMargins->{{Automatic, 322.125}, {Automatic, 45}},
+WindowMargins->{{Automatic, 85.125}, {Automatic, 68.25}},
 WindowTitle->"OpenAILink | Definition Notebook",
 DockedCells->{
   Cell[
@@ -21822,7 +21862,7 @@ Wv8q+7cApABCiAhCdPkm5mWmYdiHnliXbE7RD6+amg0AsMEQYQRD244=
       "]]}},
 CreateCellID->True,
 DynamicEvaluationTimeout->60,
-FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (November 18, 2022)",
+FrontEndVersion->"13.2 for Linux x86 (64-bit) (November 18, 2022)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[StyleDefinitions -> "Default.nb"]], 
@@ -29711,7 +29751,7 @@ GRPf1sw3cDj8VSOm/5G9w5vAHXKt3IZQ/0HDoQHBFwFFwBcEHxR9zQlGcP3o
    Cell[
     StyleData["AttachedMessage"], Deletable -> True, 
     CellMargins -> {{60, 40}, {15, 5}}]}, Visible -> False, FrontEndVersion -> 
-  "13.2 for Mac OS X x86 (64-bit) (November 18, 2022)", StyleDefinitions -> 
+  "13.2 for Linux x86 (64-bit) (November 18, 2022)", StyleDefinitions -> 
   "PrivateStylesheetFormatting.nb"],
 ExpressionUUID->"186d3b4f-4087-4962-8b25-e62fe4cbe811"
 ]

@@ -195,6 +195,9 @@ conformChat[data_, propSpec_, promptMsgs_] :=
 		completionResponseError[data, #]&
 	]
 
+conformChat[fail_?FailureQ, propSpec_, promptMsgs_] :=
+	fail
+
 
 conformChatChoice[choice_, promptMsgs_, model_, usage_, All] :=
 	Enclose[
