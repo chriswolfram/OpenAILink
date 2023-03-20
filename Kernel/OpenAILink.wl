@@ -17,6 +17,9 @@ OpenAIModels
 OpenAICompletion
 OpenAICompletionObject
 
+OpenAIChatObject
+OpenAIChatMessageObject
+
 OpenAICreateImage
 
 OpenAIEmbedding
