@@ -9,24 +9,24 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 
 (***********************************************************************************)
-(******************************** OpenAICreateImage ********************************)
+(******************************** OpenAIGenerateImage ********************************)
 (***********************************************************************************)
 
 (*
-	OpenAICreateImage[prompt]
+	OpenAIGenerateImage[prompt]
 		creates an image from the specified prompt.
 
-	OpenAICreateImage[prompt, n]
+	OpenAIGenerateImage[prompt, n]
 		creates a list of n images.
 *)
 
-Options[OpenAICreateImage] = {
+Options[OpenAIGenerateImage] = {
 	OpenAIKey  :> $OpenAIKey,
 	OpenAIUser :> $OpenAIUser,
 	ImageSize  -> Automatic
 };
 
-OpenAICreateImage[prompt_String, n_Integer, opts:OptionsPattern[]] :=
+OpenAIGenerateImage[prompt_String, n_Integer, opts:OptionsPattern[]] :=
 	Enclose[
 		conformImages[
 			OpenAIRequest[
@@ -41,15 +41,15 @@ OpenAICreateImage[prompt_String, n_Integer, opts:OptionsPattern[]] :=
 					# =!= Automatic&
 				],
 				{opts},
-				OpenAICreateImage
+				OpenAIGenerateImage
 			]
 		],
 		"InheritedFailure"
 	]
 
-OpenAICreateImage[prompt_String, opts:OptionsPattern[]] :=
+OpenAIGenerateImage[prompt_String, opts:OptionsPattern[]] :=
 	Enclose[
-		First@Confirm@OpenAICreateImage[prompt, 1, opts],
+		First@Confirm@OpenAIGenerateImage[prompt, 1, opts],
 		"InheritedFailure"
 	]
 
@@ -65,9 +65,9 @@ conformImageSizeSpec[{1024,1024}] := "1024x1024"
 conformImageSizeSpec[n_Integer] := conformImageSizeSpec[{n,n}]
 conformImageSizeSpec[spec_] :=
 	(
-		Message[OpenAICreateImage::invImageSize, spec];
+		Message[OpenAIGenerateImage::invImageSize, spec];
 		Failure["InvalidImageSize", <|
-			"MessageTemplate" :> OpenAICreateImage::invImageSize,
+			"MessageTemplate" :> OpenAIGenerateImage::invImageSize,
 			"MessageParameters" -> {spec},
 			"ImageSizeSpecification" -> spec
 		|>]
@@ -93,9 +93,9 @@ conformSingleImage[imgResp_] :=
 
 invalidCreateImageResponse[data_] :=
 	(
-		Message[OpenAICreateImage::invOpenAICreateImageResponse, data];
-		Failure["InvalidOpenAICreateImageResponse", <|
-			"MessageTemplate" :> OpenAICreateImage::invOpenAICreateImageResponse,
+		Message[OpenAIGenerateImage::invOpenAIGenerateImageResponse, data];
+		Failure["InvalidOpenAIGenerateImageResponse", <|
+			"MessageTemplate" :> OpenAIGenerateImage::invOpenAIGenerateImageResponse,
 			"MessageParameters" -> {data}
 		|>]
 	)

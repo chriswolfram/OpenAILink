@@ -14,13 +14,14 @@ OpenAIStopTokens
 
 OpenAIModels
 
-OpenAICompletion
-OpenAICompletionObject
+OpenAITextComplete
+OpenAITextCompletionObject
 
-OpenAIChatObject
+OpenAIChatComplete
+OpenAIChatCompletionObject
 OpenAIChatMessageObject
 
-OpenAICreateImage
+OpenAIGenerateImage
 
 OpenAIEmbedding
 
@@ -36,7 +37,8 @@ Begin["`Private`"];
 Needs["ChristopherWolfram`OpenAILink`Constants`"]
 Needs["ChristopherWolfram`OpenAILink`Request`"]
 Needs["ChristopherWolfram`OpenAILink`Models`"]
-Needs["ChristopherWolfram`OpenAILink`Completion`"]
+Needs["ChristopherWolfram`OpenAILink`TextCompletion`"]
+Needs["ChristopherWolfram`OpenAILink`ChatCompletion`"]
 Needs["ChristopherWolfram`OpenAILink`Image`"]
 Needs["ChristopherWolfram`OpenAILink`Embedding`"]
 Needs["ChristopherWolfram`OpenAILink`Files`"]
