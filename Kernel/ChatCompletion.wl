@@ -14,10 +14,10 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 (*
 	OpenAIChatComplete[message]
-		completes a chat conversation starting with a message.
+		completes a chat starting with a message.
 
 	OpenAIChatComplete[messages]
-		completes a chat conversation starting with a list of messages.
+		completes a chat starting with a list of messages.
 
 	OpenAIChatComplete[promptSpec, propSpec]
 		returns the property or list of properties specified by propSpec.
