@@ -7,7 +7,7 @@ PacletObject[
     "Creator" -> "Christopher Wolfram",
     "License" -> "MIT",
     "PublisherID" -> "ChristopherWolfram",
-    "Version" -> "1.2.2",
+    "Version" -> "1.3.0",
     "WolframVersion" -> "13.0+",
     "Extensions" -> {
       {
@@ -17,7 +17,10 @@ PacletObject[
         "Symbols" -> {
           "ChristopherWolfram`OpenAILink`$OpenAIKey",
           "ChristopherWolfram`OpenAILink`$OpenAIUser",
+          "ChristopherWolfram`OpenAILink`OpenAIChatMessageObject",
+          "ChristopherWolfram`OpenAILink`OpenAIChatObject",
           "ChristopherWolfram`OpenAILink`OpenAICompletion",
+          "ChristopherWolfram`OpenAILink`OpenAICompletionObject",
           "ChristopherWolfram`OpenAILink`OpenAICreateImage",
           "ChristopherWolfram`OpenAILink`OpenAIEmbedding",
           "ChristopherWolfram`OpenAILink`OpenAIModels"

@@ -181,11 +181,11 @@ OpenAIFile /: MakeBoxes[file_OpenAIFile, StandardForm] :=
 		file,
 		None,
 		{
-			{"file name: ", file["FileName"]},
-			{"id: ", file["ID"]}
+			BoxForm`SummaryItem@{"file name: ", file["FileName"]},
+			BoxForm`SummaryItem@{"id: ", file["ID"]}
 		},
 		{
-			{"file size: ", file["FileSize"]}
+			BoxForm`SummaryItem@{"file size: ", file["FileSize"]}
 		},
 		StandardForm
 	]
