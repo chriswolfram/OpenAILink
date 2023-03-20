@@ -40,7 +40,6 @@ OpenAIModels::invOpenAIModelResponse = "The OpenAI API returned invalid model sp
 
 OpenAITextComplete::invOpenAITextCompleteResponse = "The OpenAI API returned invalid completion specification `1`.";
 OpenAITextComplete::invPromptSpec = "Invalid prompt specification `1`. Expected a string or a pair of strings.";
-OpenAITextComplete::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
 OpenAITextComplete::invProbResponse = "Request to the OpenAI API returned an invalid report of token probabilities `1`.";
 
 OpenAITextCompletionObject::invOpenAITextCompletionObject = "Invalid OpenAITextCompletionObject with data `1`.";
@@ -48,6 +47,10 @@ OpenAITextCompletionObject::invProp = "`1` is not a known property of an OpenAIT
 
 OpenAIChatComplete::invOpenAIChatCompleteResponse = "The OpenAI API returned invalid completion specification `1`.";
 OpenAIChatComplete::invPromptSpec = "Invalid prompt specification `1`. Expected an chat message or a list of chat messages.";
+OpenAIChatComplete::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
+
+OpenAIChatComplete::invUsageResponse =
+OpenAITextComplete::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
 
 OpenAIChatCompletionObject::invOpenAIChatCompletionObject = "Invalid OpenAIChatCompletionObject with data `1`.";
 OpenAIChatCompletionObject::invProp = "`1` is not a known property of an OpenAIChatCompletionObject.";

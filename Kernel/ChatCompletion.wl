@@ -23,7 +23,7 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 		returns the property or list of properties specified by propSpec.
 
 	OpenAIChatComplete[promptSpec, All]
-		returns a OpenAICompletionObject containing all results of the completion.
+		returns a OpenAIChatCompletionObject containing all results of the completion.
 
 	OpenAIChatComplete[promptSpec, propSpec, n]
 		generates n completions.
@@ -155,7 +155,7 @@ conformUsage[KeyValuePattern[{
 
 conformUsage[usage_] :=
 	Failure["InvalidUsageResponse", <|
-		"MessageTemplate" :> OpenAICompletion::invUsageResponse,
+		"MessageTemplate" :> OpenAIChatComplete::invUsageResponse,
 		"MessageParameters" -> {usage}
 	|>]
 
@@ -188,7 +188,7 @@ HoldPattern[OpenAIChatCompletionObject][data:Except[KeyValuePattern[{
 	}]]] :=
 	(
 		Message[OpenAIChatCompletionObject::invOpenAIChatCompletionObject, data];
-		Failure["InvalidOpenAICompletionObject", <|
+		Failure["InvalidOpenAIChatCompletionObject", <|
 			"MessageTemplate" :> OpenAIChatCompletionObject::invOpenAIChatCompletionObject,
 			"MessageParameters" -> {data},
 			"Data" -> data

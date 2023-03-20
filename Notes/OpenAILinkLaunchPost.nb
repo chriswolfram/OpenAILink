@@ -10,24 +10,18 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      1903,         63]
-NotebookOptionsPosition[      1419,         46]
-NotebookOutlinePosition[      1827,         62]
-CellTagsIndexPosition[      1784,         59]
+NotebookDataLength[      1932,         61]
+NotebookOptionsPosition[      1482,         46]
+NotebookOutlinePosition[      1890,         62]
+CellTagsIndexPosition[      1847,         59]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-
-Cell[CellGroupData[{
-Cell["OpenAILink", "Section",
- CellChangeTimes->{{3.88832536704874*^9, 
-  3.888325368420601*^9}},ExpressionUUID->"5379cf8f-65a0-4f49-80dc-\
-5e8e3e126b4f"],
-
 Cell[TextData[{
- "(OpenAILink has been quietly sitting on the ",
- ButtonBox["Wolfram Paclet Repository",
+ StyleBox["(OpenAILink has been quietly sitting on the ",
+  FontSlant->"Italic"],
+ StyleBox[ButtonBox["Wolfram Paclet Repository",
   BaseStyle->"Hyperlink",
   ButtonData->{
     URL["https://resources.wolframcloud.com/PacletRepository/resources/\
@@ -35,17 +29,23 @@ ChristopherWolfram/OpenAILink/"], None},
   ButtonNote->
    "https://resources.wolframcloud.com/PacletRepository/resources/\
 ChristopherWolfram/OpenAILink/"],
- " for a few months now, but it has now had some important updates that make \
-it much more useful.)"
+  FontSlant->"Italic"],
+ StyleBox[" for a few months now, but it has now had some important updates \
+that make it much more useful.)",
+  FontSlant->"Italic"]
 }], "Text",
  CellChangeTimes->{{3.888325378656979*^9, 3.888325412299979*^9}, {
   3.888325443275481*^9, 
-  3.888325487660972*^9}},ExpressionUUID->"409a0161-36db-48b3-9b3f-\
-1c14b5b4409b"]
-}, Open  ]]
+  3.888325487660972*^9}},ExpressionUUID->"db02bbb4-e858-4f1e-80e2-\
+e757e29d6612"],
+
+Cell["OpenAILink", "Title",
+ CellChangeTimes->{{3.88832536704874*^9, 
+  3.888325368420601*^9}},ExpressionUUID->"5379cf8f-65a0-4f49-80dc-\
+5e8e3e126b4f"]
 },
 WindowSize->{746.25, 842.25},
-WindowMargins->{{283.125, Automatic}, {78.75, Automatic}},
+WindowMargins->{{207.375, Automatic}, {80.25, Automatic}},
 FrontEndVersion->"13.2 for Linux x86 (64-bit) (November 18, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"763d8f34-4ca7-4c29-afe6-09d9c2ef906d"
@@ -61,10 +61,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[CellGroupData[{
-Cell[580, 22, 154, 3, 67, "Section",ExpressionUUID->"5379cf8f-65a0-4f49-80dc-5e8e3e126b4f"],
-Cell[737, 27, 666, 16, 58, "Text",ExpressionUUID->"409a0161-36db-48b3-9b3f-1c14b5b4409b"]
-}, Open  ]]
+Cell[558, 20, 765, 19, 58, "Text",ExpressionUUID->"db02bbb4-e858-4f1e-80e2-e757e29d6612"],
+Cell[1326, 41, 152, 3, 98, "Title",ExpressionUUID->"5379cf8f-65a0-4f49-80dc-5e8e3e126b4f"]
 }
 ]
 *)
