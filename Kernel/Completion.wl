@@ -342,17 +342,17 @@ OpenAICompletionObject /: MakeBoxes[completion_OpenAICompletionObject, form:Stan
 		None,
 		(*the next argument is the always visisble properties*)
 		{
-			{"prompt: ", completion["Prompt"]},
-			{"completion: ", completion["Completion"]},
+			BoxForm`SummaryItem@{"prompt: ", completion["Prompt"]},
+			BoxForm`SummaryItem@{"completion: ", completion["Completion"]},
 			If[completion["Suffix"] =!= Automatic,
-				{"suffix: ", completion["Suffix"]},
+				BoxForm`SummaryItem@{"suffix: ", completion["Suffix"]},
 				Nothing
 			],
-			{"finish reason: ", completion["FinishReason"]}
+			BoxForm`SummaryItem@{"finish reason: ", completion["FinishReason"]}
 		},
 		{
-			{"model: ", completion["Model"]},
-			{"response usage: ", completion["ResponseUsage"]}
+			BoxForm`SummaryItem@{"model: ", completion["Model"]},
+			BoxForm`SummaryItem@{"response usage: ", completion["ResponseUsage"]}
 		},
 		form
 	];
@@ -428,13 +428,13 @@ OpenAIChatObject /: MakeBoxes[chat_OpenAIChatObject, form:StandardForm]:=
 		None,
 		(*the next argument is the always visisble properties*)
 		{
-			{"prompt: ", chat["PromptMessages"]},
-			{"completion: ", chat["CompletionMessage"]}
+			BoxForm`SummaryItem@{"prompt: ", chat["PromptMessages"]},
+			BoxForm`SummaryItem@{"completion: ", chat["CompletionMessage"]}
 		},
 		{
-			{"model: ", completion["Model"]},
-			{"finish reason: ", completion["FinishReason"]},
-			{"response usage: ", completion["ResponseUsage"]}
+			BoxForm`SummaryItem@{"model: ", completion["Model"]},
+			BoxForm`SummaryItem@{"finish reason: ", completion["FinishReason"]},
+			BoxForm`SummaryItem@{"response usage: ", completion["ResponseUsage"]}
 		},
 		form
 	];
@@ -503,8 +503,8 @@ OpenAIChatMessageObject /: MakeBoxes[msg_OpenAIChatMessageObject, form:StandardF
 		None,
 		(*the next argument is the always visisble properties*)
 		{
-			{"role: ", msg["Role"]},
-			{"text: ", msg["Text"]}
+			BoxForm`SummaryItem@{"role: ", msg["Role"]},
+			BoxForm`SummaryItem@{"text: ", msg["Text"]}
 		},
 		{},
 		form
