@@ -9,30 +9,27 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 
 (***********************************************************************************)
-(****************************** OpenAITextCompletion *******************************)
+(****************************** OpenAIChatCompletion *******************************)
 (***********************************************************************************)
 
 (*
-	OpenAICompletion[prompt]
-		completes the string starting with the prompt.
+	OpenAIChatCompletion[message]
+		completes a chat conversation starting with a message.
 
-	OpenAICompletion[{prompt, suffix}]
-		generates a completion that can be inserted between prompt and suffix.
+	OpenAIChatCompletion[messages]
+		completes a chat conversation starting with a list of messages.
 
-	OpenAICompletion[chat]
-		completes the chat conversation.
-
-	OpenAICompletion[promptSpec, propSpec]
+	OpenAIChatCompletion[promptSpec, propSpec]
 		returns the property or list of properties specified by propSpec.
 
-	OpenAICompletion[promptSpec, All]
+	OpenAIChatCompletion[promptSpec, All]
 		returns a OpenAICompletionObject containing all results of the completion.
 
-	OpenAICompletion[promptSpec, propSpec, n]
+	OpenAIChatCompletion[promptSpec, propSpec, n]
 		generates n completions.
 *)
 
-Options[OpenAICompletion] = {
+Options[OpenAIChatCompletion] = {
 	OpenAIKey            :> $OpenAIKey,
 	OpenAIUser           :> $OpenAIUser,
 	OpenAIModel          -> Automatic,
@@ -42,194 +39,104 @@ Options[OpenAICompletion] = {
 	OpenAIStopTokens     -> Automatic
 };
 
-OpenAICompletion[args___] :=
+OpenAIChatCompletion[args___] :=
 	Enclose[
-		iOpenAICompletion@Confirm@ArgumentsOptions[OpenAICompletion[args], {1,3}],
+		iOpenAIChatCompletion@Confirm@ArgumentsOptions[OpenAIChatCompletion[args], {1,3}],
 		"InheritedFailiure"
 	]
 
 
-(* Completion *)
-iOpenAICompletion[{{{prompt_String, suffix:_String|Automatic}, propSpec_, n_}, opts_}] :=
-	Module[{rawResponse},
-		rawResponse =
-			OpenAIRequest[
-				{"v1", "completions"},
-				Select[
-					<|
-						"model" -> Replace[OptionValue[OpenAICompletion,opts,OpenAIModel], Automatic -> "text-davinci-003"],
-						"prompt" -> prompt,
-						"suffix" -> suffix,
-						"n" -> n,
-						"temperature" -> OptionValue[OpenAICompletion,opts,OpenAITemperature],
-						"top_p" -> OptionValue[OpenAICompletion,opts,OpenAITopProbability],
-						"max_tokens" -> OptionValue[OpenAICompletion,opts,OpenAITokenLimit],
-						"stop" -> OptionValue[OpenAICompletion,opts,OpenAIStopTokens],
-						"logprobs" -> 5
-					|>,
-					# =!= Automatic&
-				],
-				{opts},
-				OpenAICompletion
-			];
-	conformCompletion[rawResponse, propSpec, {prompt, suffix}]
-	]
-
-iOpenAICompletion[{{prompt_String, propSpec_, n_}, opts_}] :=
-	iOpenAICompletion[{{{prompt, Automatic}, propSpec, n}, opts}]
-
-
-(* Chat *)
-iOpenAICompletion[{{promptMsgs:{__OpenAIChatMessageObject}, propSpec_, n_}, opts_}] :=
+iOpenAIChatCompletion[{{promptMsgs:{__OpenAIChatMessageObject}, propSpec_, n_}, opts_}] :=
 	Module[{rawResponse},
 		rawResponse =
 			OpenAIRequest[
 				{"v1", "chat", "completions"},
 				Select[
 					<|
-						"model" -> Replace[OptionValue[OpenAICompletion,opts,OpenAIModel], Automatic -> "gpt-3.5-turbo"],
+						"model" -> Replace[OptionValue[OpenAIChatCompletion,opts,OpenAIModel], Automatic -> "gpt-3.5-turbo"],
 						"messages" -> chatMessageJSON/@promptMsgs,
 						"n" -> n,
-						"temperature" -> OptionValue[OpenAICompletion,opts,OpenAITemperature],
-						"top_p" -> OptionValue[OpenAICompletion,opts,OpenAITopProbability],
-						"max_tokens" -> OptionValue[OpenAICompletion,opts,OpenAITokenLimit],
-						"stop" -> OptionValue[OpenAICompletion,opts,OpenAIStopTokens]
+						"temperature" -> OptionValue[OpenAIChatCompletion,opts,OpenAITemperature],
+						"top_p" -> OptionValue[OpenAIChatCompletion,opts,OpenAITopProbability],
+						"max_tokens" -> OptionValue[OpenAIChatCompletion,opts,OpenAITokenLimit],
+						"stop" -> OptionValue[OpenAIChatCompletion,opts,OpenAIStopTokens]
 					|>,
 					# =!= Automatic&
 				],
 				{opts},
-				OpenAICompletion
+				OpenAIChatCompletion
 			];
 		conformChat[rawResponse, propSpec, promptMsgs]
 	]
 
-iOpenAICompletion[{{promptMsg_OpenAIChatMessageObject, propSpec_, n_}, opts_}] :=
-	iOpenAICompletion[{{{promptMsg}, propSpec, n}, opts}]
+iOpenAIChatCompletion[{{promptMsg_OpenAIChatMessageObject, propSpec_, n_}, opts_}] :=
+	iOpenAIChatCompletion[{{{promptMsg}, propSpec, n}, opts}]
 
 
-iOpenAICompletion[{{promptSpec_, propSpec_, n_}, opts_}] :=
+iOpenAIChatCompletion[{{promptSpec_, propSpec_, n_}, opts_}] :=
 	(
-		Message[OpenAICompletion::invPromptSpec, promptSpec];
+		Message[OpenAIChatCompletion::invPromptSpec, promptSpec];
 		Failure["InvalidPromptSpecification", <|
-			"MessageTemplate" :> OpenAICompletion::invPromptSpec,
+			"MessageTemplate" :> OpenAIChatCompletion::invPromptSpec,
 			"MessageParameters" -> {promptSpec},
 			"PromptSpecification" -> promptSpec
 		|>]
 )
 
 
-iOpenAICompletion[{{promptSpec_, propSpec_}, opts_}] :=
-	Replace[iOpenAICompletion[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
+iOpenAIChatCompletion[{{promptSpec_, propSpec_}, opts_}] :=
+	Replace[iOpenAIChatCompletion[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
 
-iOpenAICompletion[{{promptSpec_}, opts_}] :=
-	iOpenAICompletion[{{promptSpec, "Completion"}, opts}]
-
-
-(* Conform completion response *)
-
-conformCompletion[data_, propSpec_, promptSuffix_] :=
-	Enclose[
-		Module[{model, usage, choices},
-			model = Confirm[data["model"]];
-			usage = conformUsage[Confirm[data["usage"]]];
-			choices = ConfirmMatch[data["choices"], _List];
-
-			conformCompletionChoice[#, promptSuffix, model, usage, propSpec] &/@ choices
-		],
-		completionResponseError[data, #]&
-	]
-
-conformCompletion[fail_?FailureQ, propSpec_, promptSuffix_] :=
-	fail
+iOpenAIChatCompletion[{{promptSpec_}, opts_}] :=
+	iOpenAIChatCompletion[{{promptSpec, "Completion"}, opts}]
 
 
-conformCompletionChoice[choice_, {prompt_, suffix_}, model_, usage_, All] :=
-	Enclose[
-		OpenAICompletionObject[<|
-			"Prompt" -> prompt,
-			"Suffix" -> suffix,
-			"Completion" -> Confirm@choice["text"],
-			"Model" -> model,
-			"FinishReason" -> Replace[Confirm@choice["finish_reason"], {"length" -> "Length", "stop" -> "Stop"}],
-			"ResponseUsage" -> usage,
-			"LogProbabilities" -> Confirm@conformLogProbabilities[choice]
-		|>],
-		completionResponseError[data, #]&
-	]
-
-conformCompletionChoice[choice_, promptSuffix_, model_, usage_, props_List] :=
-	Enclose[
-		With[{completion = Confirm@conformCompletionChoice[choice, promptSuffix, model, usage, All]},
-			completion[#] &/@ props
-		],
-		"InheritedFailure"
-	]
-
-conformCompletionChoice[choice_, promptSuffix_, model_, usage_, prop_] :=
-	First@conformCompletionChoice[choice, promptSuffix, model, usage, {prop}]
-
-
-conformLogProbabilities[KeyValuePattern[{"logprobs" -> KeyValuePattern[{"top_logprobs" -> probs:{___?AssociationQ}}]}]] :=
-	KeyMap[Replace["<|endoftext|>" -> EndOfString]] /@ probs
-
-conformLogProbabilities[choice_] :=
-	Failure["InvalidProbabilitiesResponse", <|
-		"MessageTemplate" :> OpenAICompletion::invProbResponse,
-		"MessageParameters" -> {choice["logprobs"]},
-		"Response" -> choice
-	|>]
-
-
-
-(* Conform chat response *)
-
-conformChat[data_, propSpec_, promptMsgs_] :=
-	Enclose[
-		Module[{model, usage, choices},
-			model = Confirm[data["model"]];
-			usage = conformUsage[Confirm[data["usage"]]];
-			choices = ConfirmMatch[data["choices"], _List];
-
-			conformChatChoice[#, promptMsgs, model, usage, propSpec] &/@ choices
-		],
-		completionResponseError[data, #]&
+conformChat[KeyValuePattern[{
+		"model" -> model_,
+		"usage" -> rawUsage_,
+		"choices" -> choices_List
+	}], propSpec_, promptMsgs_] :=
+	With[{usage = conformUsage[rawUsage]},
+		getChoiceProperty[conformChatChoice[#, promptSuffix, model, usage], propSpec] &/@ choices
 	]
 
 conformChat[fail_?FailureQ, propSpec_, promptMsgs_] :=
 	fail
 
-
-conformChatChoice[choice_, promptMsgs_, model_, usage_, All] :=
-	Enclose[
-		OpenAIChatObject[<|
-			"CompletionMessage" -> Confirm@jsonToMessageObject@choice["message"],
-			"PromptMessages" -> promptMsgs,
-			"Model" -> model,
-			"FinishReason" -> Replace[Confirm@choice["finish_reason"], {"length" -> "Length", "stop" -> "Stop"}],
-			"ResponseUsage" -> usage
-		|>],
-		completionResponseError[data, #]&
-	]
-
-conformChatChoice[choice_, promptMsgs_, model_, usage_, props_List] :=
-	Enclose[
-		With[{chat = Confirm@conformChatChoice[choice, promptMsgs, model, usage, All]},
-			chat[#] &/@ props
-		],
-		"InheritedFailure"
-	]
-
-conformChatChoice[choice_, promptMsgs_, model_, usage_, prop_] :=
-	First@conformChatChoice[choice, promptMsgs, model, usage, {prop}]
+conformChat[data_, propSpec_, promptMsgs_] :=
+	completionResponseError[data]
 
 
-jsonToMessageObject[json_] :=
-	Enclose[
-		OpenAIChatMessageObject[<|
-			"Role" -> ConfirmMatch[json["role"], _String],
-			"Text" -> ConfirmMatch[json["content"], _String]
-		|>]
-	]
+getChoiceProperty[choice_OpenAIChatCompletionObject, All] :=
+	choice
+
+getChoiceProperty[choice_OpenAIChatCompletionObject, props_List] :=
+	choice/@props
+
+getChoiceProperty[choice_OpenAIChatCompletionObject, prop_] :=
+	choice[prop]
+
+getChoiceProperty[choice_, propSpec_] :=
+	choice
+
+
+conformChatChoice[choice: KeyValuePattern[{
+		"message" -> KeyValuePattern[{
+				"role" -> role_String,
+				"content" -> content_String
+			}],
+		"finish_reason" -> finishReason_
+	}], promptMsgs_, model_, usage_] :=
+	OpenAIChatCompletion[<|
+		"CompletionMessage" -> OpenAIChatMessageObject[<|"Role" -> role, "Text" -> content|>],
+		"PromptMessages" -> promptMsgs,
+		"Model" -> model,
+		"FinishReason" -> Replace[finishReason, {"length" -> "Length", "stop" -> "Stop"}],
+		"ResponseUsage" -> usage
+	|>]
+
+conformChatChoice[data_, promptMsgs_, model_, usage_] :=
+	completionResponseError[data]
 
 
 
@@ -253,123 +160,26 @@ conformUsage[usage_] :=
 	|>]
 
 
-
-completionResponseError[data_, confirmationFailure_] :=
+completionResponseError[data_] :=
 	(
-		Message[OpenAICompletion::invOpenAICompletionResponse, data];
-		Failure["InvalidOpenAICompletionResponse", <|
-			"MessageTemplate" :> OpenAICompletion::invOpenAICompletionResponse,
+		Message[OpenAIChatCompletion::invOpenAIChatCompletionResponse, data];
+		Failure["InvalidOpenAIChatCompletionResponse", <|
+			"MessageTemplate" :> OpenAIChatCompletion::invOpenAIChatCompletionResponse,
 			"MessageParameters" -> {data},
-			"Response" -> data,
-			"ConfirmationFailure" -> confirmationFailure
+			"Response" -> data
 		|>]
 	)
 
 
+
 (***********************************************************************************)
-(***************************** OpenAICompletionObject ******************************)
+(**************************** OpenAIChatCompletionObject ****************************)
 (***********************************************************************************)
 
 
 (***** Verifier *****)
 
-HoldPattern[OpenAICompletionObject][data:Except[KeyValuePattern[{
-		"Completion" -> _String,
-		"Prompt" -> _String,
-		"Suffix" -> _String | Automatic,
-		"Model" -> _,
-		"FinishReason" -> _,
-		"ResponseUsage" -> _,
-		"LogProbabilities" -> {___?AssociationQ}
-	}]]] :=
-	(
-		Message[OpenAICompletionObject::invOpenAICompletionObject, data];
-		Failure["InvalidOpenAICompletionObject", <|
-			"MessageTemplate" :> OpenAICompletionObject::invOpenAICompletionObject,
-			"MessageParameters" -> {data},
-			"Data" -> data
-		|>]
-	)
-
-
-(***** Accessors *****)
-
-HoldPattern[OpenAICompletionObject][data_]["Data"] := data
-completion_OpenAICompletionObject[All] := AssociationMap[completion[#]&, completion["Properties"]]
-
-completion_OpenAICompletionObject["Completion"] := completion["Data"]["Completion"]
-completion_OpenAICompletionObject["Prompt"] := completion["Data"]["Prompt"]
-completion_OpenAICompletionObject["Suffix"] := completion["Data"]["Suffix"]
-completion_OpenAICompletionObject["Model"] := completion["Data"]["Model"]
-completion_OpenAICompletionObject["FinishReason"] := completion["Data"]["FinishReason"]
-completion_OpenAICompletionObject["ResponseUsage"] := completion["Data"]["ResponseUsage"]
-completion_OpenAICompletionObject["LogProbabilities"] := completion["Data"]["LogProbabilities"]
-
-completion_OpenAICompletionObject["CompletedPrompt"] :=
-	completion["Prompt"] <> completion["Completion"] <> Replace[completion["Suffix"], Automatic -> ""]
-
-completion_OpenAICompletionObject["Probabilities"] := Exp@completion["LogProbabilities"]
-
-
-completion_OpenAICompletionObject["Properties"] :=
-	Sort@{
-		"CompletedPrompt",
-		"Completion",
-		"Prompt",
-		"Suffix",
-		"Model",
-		"FinishReason",
-		"ResponseUsage",
-		"LogProbabilities",
-		"Probabilities"
-	}
-
-completion_OpenAICompletionObject[prop_] :=
-	(
-		Message[OpenAICompletionObject::invProp, prop];
-		Failure["InvalidProperty", <|
-			"MessageTemplate" :> OpenAICompletionObject::invProp,
-			"MessageParameters" -> {prop},
-			"Property" -> prop,
-			"Completion" -> completion
-		|>]
-	)
-
-
-(***** Summary Box *****)
-
-OpenAICompletionObject /: MakeBoxes[completion_OpenAICompletionObject, form:StandardForm]:=
-	BoxForm`ArrangeSummaryBox[
-		OpenAICompletionObject,
-		completion,
-		None,
-		(*the next argument is the always visisble properties*)
-		{
-			BoxForm`SummaryItem@{"prompt: ", completion["Prompt"]},
-			BoxForm`SummaryItem@{"completion: ", completion["Completion"]},
-			If[completion["Suffix"] =!= Automatic,
-				BoxForm`SummaryItem@{"suffix: ", completion["Suffix"]},
-				Nothing
-			],
-			BoxForm`SummaryItem@{"finish reason: ", completion["FinishReason"]}
-		},
-		{
-			BoxForm`SummaryItem@{"model: ", completion["Model"]},
-			BoxForm`SummaryItem@{"response usage: ", completion["ResponseUsage"]}
-		},
-		form
-	];
-
-
-
-(***********************************************************************************)
-(******************************** OpenAIChatObject *********************************)
-(***********************************************************************************)
-
-
-(***** Verifier *****)
-
-HoldPattern[OpenAIChatObject][data:Except[KeyValuePattern[{
+HoldPattern[OpenAIChatCompletionObject][data:Except[KeyValuePattern[{
 		"CompletionMessage" -> _OpenAIChatMessageObject,
 		"PromptMessages" -> {___OpenAIChatMessageObject},
 		"Model" -> _,
@@ -377,9 +187,9 @@ HoldPattern[OpenAIChatObject][data:Except[KeyValuePattern[{
 		"ResponseUsage" -> _
 	}]]] :=
 	(
-		Message[OpenAIChatObject::invOpenAIChatObject, data];
+		Message[OpenAIChatCompletionObject::invOpenAIChatCompletionObject, data];
 		Failure["InvalidOpenAICompletionObject", <|
-			"MessageTemplate" :> OpenAIChatObject::invOpenAIChatObject,
+			"MessageTemplate" :> OpenAIChatCompletionObject::invOpenAIChatCompletionObject,
 			"MessageParameters" -> {data},
 			"Data" -> data
 		|>]
@@ -388,19 +198,19 @@ HoldPattern[OpenAIChatObject][data:Except[KeyValuePattern[{
 
 (***** Accessors *****)
 
-HoldPattern[OpenAIChatObject][data_]["Data"] := data
-chat_OpenAIChatObject[All] := AssociationMap[chat[#]&, chat["Properties"]]
+HoldPattern[OpenAIChatCompletionObject][data_]["Data"] := data
+chat_OpenAIChatCompletionObject[All] := AssociationMap[chat[#]&, chat["Properties"]]
 
-chat_OpenAIChatObject["CompletionMessage"] := chat["Data"]["CompletionMessage"]
-chat_OpenAIChatObject["PromptMessages"] := chat["Data"]["PromptMessages"]
-chat_OpenAIChatObject["Model"] := chat["Data"]["Model"]
-chat_OpenAIChatObject["FinishReason"] := chat["Data"]["FinishReason"]
-chat_OpenAIChatObject["ResponseUsage"] := chat["Data"]["ResponseUsage"]
+chat_OpenAIChatCompletionObject["CompletionMessage"] := chat["Data"]["CompletionMessage"]
+chat_OpenAIChatCompletionObject["PromptMessages"] := chat["Data"]["PromptMessages"]
+chat_OpenAIChatCompletionObject["Model"] := chat["Data"]["Model"]
+chat_OpenAIChatCompletionObject["FinishReason"] := chat["Data"]["FinishReason"]
+chat_OpenAIChatCompletionObject["ResponseUsage"] := chat["Data"]["ResponseUsage"]
 
-chat_OpenAIChatObject["Completion"] := chat["CompletionMessage"]
-chat_OpenAIChatObject["Messages"] := Append[chat["PromptMessages"], chat["CompletionMessage"]]
+chat_OpenAIChatCompletionObject["Completion"] := chat["CompletionMessage"]
+chat_OpenAIChatCompletionObject["Messages"] := Append[chat["PromptMessages"], chat["CompletionMessage"]]
 
-chat_OpenAIChatObject["Properties"] :=
+chat_OpenAIChatCompletionObject["Properties"] :=
 	Sort@{
 		"CompletionMessage",
 		"PromptMessages",
@@ -410,11 +220,11 @@ chat_OpenAIChatObject["Properties"] :=
 		"ResponseUsage"
 	}
 
-chat_OpenAIChatObject[prop_] :=
+chat_OpenAIChatCompletionObject[prop_] :=
 	(
-		Message[OpenAIChatObject::invProp, prop];
+		Message[OpenAIChatCompletionObject::invProp, prop];
 		Failure["InvalidProperty", <|
-			"MessageTemplate" :> OpenAIChatObject::invProp,
+			"MessageTemplate" :> OpenAIChatCompletionObject::invProp,
 			"MessageParameters" -> {prop},
 			"Property" -> prop,
 			"Completion" -> chat
@@ -424,9 +234,9 @@ chat_OpenAIChatObject[prop_] :=
 
 (***** Summary Box *****)
 
-OpenAIChatObject /: MakeBoxes[chat_OpenAIChatObject, form:StandardForm]:=
+OpenAIChatCompletionObject /: MakeBoxes[chat_OpenAIChatCompletionObject, form:StandardForm]:=
 	BoxForm`ArrangeSummaryBox[
-		OpenAIChatObject,
+		OpenAIChatCompletionObject,
 		chat,
 		None,
 		(*the next argument is the always visisble properties*)
@@ -441,6 +251,7 @@ OpenAIChatObject /: MakeBoxes[chat_OpenAIChatObject, form:StandardForm]:=
 		},
 		form
 	];
+
 
 
 (***********************************************************************************)

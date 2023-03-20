@@ -35,16 +35,19 @@ OpenAIFileUpload::invalidOpenAIAPIKey = "`1` is not a valid OpenAI API key. Cons
 
 OpenAIModels::invOpenAIModelResponse = "The OpenAI API returned invalid model specification `1`.";
 
-OpenAITextCompletion::invOpenAITectCompletionResponse = "The OpenAI API returned invalid completion specification `1`.";
+OpenAITextCompletion::invOpenAITextCompletionResponse = "The OpenAI API returned invalid completion specification `1`.";
 OpenAITextCompletion::invPromptSpec = "Invalid prompt specification `1`. Expected a string or a pair of strings.";
 OpenAITextCompletion::invUsageResponse = "Request to the OpenAI API returned an invalid report of its usage: `1`.";
 OpenAITextCompletion::invProbResponse = "Request to the OpenAI API returned an invalid report of token probabilities `1`.";
 
-OpenAITextCompletion::invOpenAITextCompletionObject = "Invalid OpenAITextCompletionObject with data `1`.";
-OpenAITextCompletion::invProp = "`1` is not a known property of an OpenAITextCompletionObject.";
+OpenAITextCompletionObject::invOpenAITextCompletionObject = "Invalid OpenAITextCompletionObject with data `1`.";
+OpenAITextCompletionObject::invProp = "`1` is not a known property of an OpenAITextCompletionObject.";
 
-OpenAIChatObject::invOpenAIChatObject = "Invalid OpenAIChatObject with data `1`.";
-OpenAIChatObject::invProp = "`1` is not a known property of an OpenAIChatObject.";
+OpenAIChatCompletion::invOpenAIChatCompletionResponse = "The OpenAI API returned invalid completion specification `1`.";
+OpenAIChatCompletion::invPromptSpec = "Invalid prompt specification `1`. Expected an chat message or a list of chat messages.";
+
+OpenAIChatCompletionObject::invOpenAIChatCompletionObject = "Invalid OpenAIChatCompletionObject with data `1`.";
+OpenAIChatCompletionObject::invProp = "`1` is not a known property of an OpenAIChatCompletionObject.";
 
 OpenAIChatMessageObject::invOpenAIChatMessageObject = "Invalid OpenAIChatMessageObject with data `1`.";
 OpenAIChatMessageObject::invProp = "`1` is not a known property of an OpenAIChatMessageObject.";

@@ -92,8 +92,6 @@ iOpenAITextCompletion[{{promptSpec_}, opts_}] :=
 	iOpenAITextCompletion[{{promptSpec, "Completion"}, opts}]
 
 
-(* Conform text completion response *)
-
 conformCompletion[KeyValuePattern[{
 		"model" -> model_,
 		"usage" -> rawUsage_,
@@ -102,6 +100,12 @@ conformCompletion[KeyValuePattern[{
 	With[{usage = conformUsage[rawUsage]},
 		getChoiceProperty[conformCompletionChoice[#, promptSuffix, model, usage], propSpec] &/@ choices
 	]
+
+conformCompletion[fail_?FailureQ, propSpec_, promptSuffix_] :=
+	fail
+
+conformCompletion[data_, propSpec_, promptSuffix_] :=
+	completionResponseError[data]
 
 
 getChoiceProperty[choice_OpenAITextCompletionObject, All] :=
@@ -115,13 +119,6 @@ getChoiceProperty[choice_OpenAITextCompletionObject, prop_] :=
 
 getChoiceProperty[choice_, propSpec_] :=
 	choice
-
-
-conformCompletion[fail_?FailureQ, propSpec_, promptSuffix_] :=
-	fail
-
-conformCompletion[data_, propSpec_, promptSuffix_] :=
-	completionResponseError[data]
 
 
 conformCompletionChoice[choice: KeyValuePattern[{
@@ -169,7 +166,6 @@ conformUsage[usage_] :=
 		"MessageTemplate" :> OpenAITextCompletion::invUsageResponse,
 		"MessageParameters" -> {usage}
 	|>]
-
 
 
 completionResponseError[data_] :=
