@@ -13,11 +13,20 @@ Needs["ChristopherWolfram`OpenAILink`"]
 *)
 
 $OpenAIKey :=
-	With[{key = SystemCredential["OPENAI_API_KEY"]},
-		If[!MissingQ[key],
-			key,
-			Environment["OPENAI_API_KEY"]
-		]
+	With[{key = getAPIKey[]},
+		If[!MissingQ[key], $OpenAIKey = key, key]
+	]
+
+getAPIKey[] :=
+	Catch@Module[{key},
+		key = SystemCredential["OpenAIAPIKey"];
+		If[!MissingQ[key], Throw[key]];
+
+		key = SystemCredential["OPENAI_API_KEY"];
+		If[!MissingQ[key], Throw[key]];
+
+		key = Environment["OPENAI_API_KEY"];
+		Replace[key, $Failed -> Missing["NoOpenAIAPIKey"]]
 	]
 
 
