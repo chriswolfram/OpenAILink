@@ -9,27 +9,27 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 
 (***********************************************************************************)
-(****************************** OpenAITextCompletion *******************************)
+(******************************* OpenAITextComplete ********************************)
 (***********************************************************************************)
 
 (*
-	OpenAITextCompletion[prompt]
+	OpenAITextComplete[prompt]
 		completes the string starting with the prompt.
 
-	OpenAITextCompletion[{prompt, suffix}]
+	OpenAITextComplete[{prompt, suffix}]
 		generates a completion that can be inserted between prompt and suffix.
 
-	OpenAITextCompletion[promptSpec, propSpec]
+	OpenAITextComplete[promptSpec, propSpec]
 		returns the property or list of properties specified by propSpec.
 
-	OpenAITextCompletion[promptSpec, All]
+	OpenAITextComplete[promptSpec, All]
 		returns a OpenAITextCompletionObject containing all results of the completion.
 
-	OpenAITextCompletion[promptSpec, propSpec, n]
+	OpenAITextComplete[promptSpec, propSpec, n]
 		generates n completions.
 *)
 
-Options[OpenAITextCompletion] = {
+Options[OpenAITextComplete] = {
 	OpenAIKey            :> $OpenAIKey,
 	OpenAIUser           :> $OpenAIUser,
 	OpenAIModel          -> Automatic,
@@ -39,57 +39,57 @@ Options[OpenAITextCompletion] = {
 	OpenAIStopTokens     -> Automatic
 };
 
-OpenAITextCompletion[args___] :=
+OpenAITextComplete[args___] :=
 	Enclose[
-		iOpenAITextCompletion@Confirm@ArgumentsOptions[OpenAITextCompletion[args], {1,3}],
+		iOpenAITextComplete@Confirm@ArgumentsOptions[OpenAITextComplete[args], {1,3}],
 		"InheritedFailiure"
 	]
 
 
 (* Completion *)
-iOpenAITextCompletion[{{{prompt_String, suffix:_String|Automatic}, propSpec_, n_}, opts_}] :=
+iOpenAITextComplete[{{{prompt_String, suffix:_String|Automatic}, propSpec_, n_}, opts_}] :=
 	Module[{rawResponse},
 		rawResponse =
 			OpenAIRequest[
 				{"v1", "completions"},
 				Select[
 					<|
-						"model" -> Replace[OptionValue[OpenAITextCompletion,opts,OpenAIModel], Automatic -> "text-davinci-003"],
+						"model" -> Replace[OptionValue[OpenAITextComplete,opts,OpenAIModel], Automatic -> "text-davinci-003"],
 						"prompt" -> prompt,
 						"suffix" -> suffix,
 						"n" -> n,
-						"temperature" -> OptionValue[OpenAITextCompletion,opts,OpenAITemperature],
-						"top_p" -> OptionValue[OpenAITextCompletion,opts,OpenAITopProbability],
-						"max_tokens" -> OptionValue[OpenAITextCompletion,opts,OpenAITokenLimit],
-						"stop" -> OptionValue[OpenAITextCompletion,opts,OpenAIStopTokens],
+						"temperature" -> OptionValue[OpenAITextComplete,opts,OpenAITemperature],
+						"top_p" -> OptionValue[OpenAITextComplete,opts,OpenAITopProbability],
+						"max_tokens" -> OptionValue[OpenAITextComplete,opts,OpenAITokenLimit],
+						"stop" -> OptionValue[OpenAITextComplete,opts,OpenAIStopTokens],
 						"logprobs" -> 5
 					|>,
 					# =!= Automatic&
 				],
 				{opts},
-				OpenAITextCompletion
+				OpenAITextComplete
 			];
 		conformCompletion[rawResponse, propSpec, {prompt, suffix}]
 	]
 
-iOpenAITextCompletion[{{prompt_String, propSpec_, n_}, opts_}] :=
-	iOpenAITextCompletion[{{{prompt, Automatic}, propSpec, n}, opts}]
+iOpenAITextComplete[{{prompt_String, propSpec_, n_}, opts_}] :=
+	iOpenAITextComplete[{{{prompt, Automatic}, propSpec, n}, opts}]
 
-iOpenAITextCompletion[{{promptSpec_, propSpec_, n_}, opts_}] :=
+iOpenAITextComplete[{{promptSpec_, propSpec_, n_}, opts_}] :=
 	(
-		Message[OpenAITextCompletion::invPromptSpec, promptSpec];
+		Message[OpenAITextComplete::invPromptSpec, promptSpec];
 		Failure["InvalidPromptSpecification", <|
-			"MessageTemplate" :> OpenAITextCompletion::invPromptSpec,
+			"MessageTemplate" :> OpenAITextComplete::invPromptSpec,
 			"MessageParameters" -> {promptSpec},
 			"PromptSpecification" -> promptSpec
 		|>]
 )
 
-iOpenAITextCompletion[{{promptSpec_, propSpec_}, opts_}] :=
-	Replace[iOpenAITextCompletion[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
+iOpenAITextComplete[{{promptSpec_, propSpec_}, opts_}] :=
+	Replace[iOpenAITextComplete[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
 
-iOpenAITextCompletion[{{promptSpec_}, opts_}] :=
-	iOpenAITextCompletion[{{promptSpec, "Completion"}, opts}]
+iOpenAITextComplete[{{promptSpec_}, opts_}] :=
+	iOpenAITextComplete[{{promptSpec, "Completion"}, opts}]
 
 
 conformCompletion[KeyValuePattern[{
@@ -144,7 +144,7 @@ conformLogProbabilities[KeyValuePattern[{"logprobs" -> KeyValuePattern[{"top_log
 
 conformLogProbabilities[choice_] :=
 	Failure["InvalidProbabilitiesResponse", <|
-		"MessageTemplate" :> OpenAITextCompletion::invProbResponse,
+		"MessageTemplate" :> OpenAITextComplete::invProbResponse,
 		"MessageParameters" -> {choice["logprobs"]},
 		"Response" -> choice
 	|>]
@@ -163,16 +163,16 @@ conformUsage[KeyValuePattern[{
 
 conformUsage[usage_] :=
 	Failure["InvalidUsageResponse", <|
-		"MessageTemplate" :> OpenAITextCompletion::invUsageResponse,
+		"MessageTemplate" :> OpenAITextComplete::invUsageResponse,
 		"MessageParameters" -> {usage}
 	|>]
 
 
 completionResponseError[data_] :=
 	(
-		Message[OpenAITextCompletion::invOpenAITextCompletionResponse, data];
-		Failure["InvalidOpenAITextCompletionResponse", <|
-			"MessageTemplate" :> OpenAITextCompletion::invOpenAITextCompletionResponse,
+		Message[OpenAITextComplete::invOpenAITextCompleteResponse, data];
+		Failure["InvalidOpenAITextCompleteResponse", <|
+			"MessageTemplate" :> OpenAITextComplete::invOpenAITextCompleteResponse,
 			"MessageParameters" -> {data},
 			"Response" -> data
 		|>]

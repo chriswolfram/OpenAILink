@@ -9,27 +9,27 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 
 (***********************************************************************************)
-(****************************** OpenAIChatCompletion *******************************)
+(******************************* OpenAIChatComplete ********************************)
 (***********************************************************************************)
 
 (*
-	OpenAIChatCompletion[message]
+	OpenAIChatComplete[message]
 		completes a chat conversation starting with a message.
 
-	OpenAIChatCompletion[messages]
+	OpenAIChatComplete[messages]
 		completes a chat conversation starting with a list of messages.
 
-	OpenAIChatCompletion[promptSpec, propSpec]
+	OpenAIChatComplete[promptSpec, propSpec]
 		returns the property or list of properties specified by propSpec.
 
-	OpenAIChatCompletion[promptSpec, All]
+	OpenAIChatComplete[promptSpec, All]
 		returns a OpenAICompletionObject containing all results of the completion.
 
-	OpenAIChatCompletion[promptSpec, propSpec, n]
+	OpenAIChatComplete[promptSpec, propSpec, n]
 		generates n completions.
 *)
 
-Options[OpenAIChatCompletion] = {
+Options[OpenAIChatComplete] = {
 	OpenAIKey            :> $OpenAIKey,
 	OpenAIUser           :> $OpenAIUser,
 	OpenAIModel          -> Automatic,
@@ -39,56 +39,56 @@ Options[OpenAIChatCompletion] = {
 	OpenAIStopTokens     -> Automatic
 };
 
-OpenAIChatCompletion[args___] :=
+OpenAIChatComplete[args___] :=
 	Enclose[
-		iOpenAIChatCompletion@Confirm@ArgumentsOptions[OpenAIChatCompletion[args], {1,3}],
+		iOpenAIChatComplete@Confirm@ArgumentsOptions[OpenAIChatComplete[args], {1,3}],
 		"InheritedFailiure"
 	]
 
 
-iOpenAIChatCompletion[{{promptMsgs:{__OpenAIChatMessageObject}, propSpec_, n_}, opts_}] :=
+iOpenAIChatComplete[{{promptMsgs:{__OpenAIChatMessageObject}, propSpec_, n_}, opts_}] :=
 	Module[{rawResponse},
 		rawResponse =
 			OpenAIRequest[
 				{"v1", "chat", "completions"},
 				Select[
 					<|
-						"model" -> Replace[OptionValue[OpenAIChatCompletion,opts,OpenAIModel], Automatic -> "gpt-3.5-turbo"],
+						"model" -> Replace[OptionValue[OpenAIChatComplete,opts,OpenAIModel], Automatic -> "gpt-3.5-turbo"],
 						"messages" -> chatMessageJSON/@promptMsgs,
 						"n" -> n,
-						"temperature" -> OptionValue[OpenAIChatCompletion,opts,OpenAITemperature],
-						"top_p" -> OptionValue[OpenAIChatCompletion,opts,OpenAITopProbability],
-						"max_tokens" -> OptionValue[OpenAIChatCompletion,opts,OpenAITokenLimit],
-						"stop" -> OptionValue[OpenAIChatCompletion,opts,OpenAIStopTokens]
+						"temperature" -> OptionValue[OpenAIChatComplete,opts,OpenAITemperature],
+						"top_p" -> OptionValue[OpenAIChatComplete,opts,OpenAITopProbability],
+						"max_tokens" -> OptionValue[OpenAIChatComplete,opts,OpenAITokenLimit],
+						"stop" -> OptionValue[OpenAIChatComplete,opts,OpenAIStopTokens]
 					|>,
 					# =!= Automatic&
 				],
 				{opts},
-				OpenAIChatCompletion
+				OpenAIChatComplete
 			];
 		conformChat[rawResponse, propSpec, promptMsgs]
 	]
 
-iOpenAIChatCompletion[{{promptMsg_OpenAIChatMessageObject, propSpec_, n_}, opts_}] :=
-	iOpenAIChatCompletion[{{{promptMsg}, propSpec, n}, opts}]
+iOpenAIChatComplete[{{promptMsg_OpenAIChatMessageObject, propSpec_, n_}, opts_}] :=
+	iOpenAIChatComplete[{{{promptMsg}, propSpec, n}, opts}]
 
 
-iOpenAIChatCompletion[{{promptSpec_, propSpec_, n_}, opts_}] :=
+iOpenAIChatComplete[{{promptSpec_, propSpec_, n_}, opts_}] :=
 	(
-		Message[OpenAIChatCompletion::invPromptSpec, promptSpec];
+		Message[OpenAIChatComplete::invPromptSpec, promptSpec];
 		Failure["InvalidPromptSpecification", <|
-			"MessageTemplate" :> OpenAIChatCompletion::invPromptSpec,
+			"MessageTemplate" :> OpenAIChatComplete::invPromptSpec,
 			"MessageParameters" -> {promptSpec},
 			"PromptSpecification" -> promptSpec
 		|>]
 )
 
 
-iOpenAIChatCompletion[{{promptSpec_, propSpec_}, opts_}] :=
-	Replace[iOpenAIChatCompletion[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
+iOpenAIChatComplete[{{promptSpec_, propSpec_}, opts_}] :=
+	Replace[iOpenAIChatComplete[{{promptSpec, propSpec, 1}, opts}], {res_} :> res]
 
-iOpenAIChatCompletion[{{promptSpec_}, opts_}] :=
-	iOpenAIChatCompletion[{{promptSpec, "Completion"}, opts}]
+iOpenAIChatComplete[{{promptSpec_}, opts_}] :=
+	iOpenAIChatComplete[{{promptSpec, "Completion"}, opts}]
 
 
 conformChat[KeyValuePattern[{
@@ -97,7 +97,7 @@ conformChat[KeyValuePattern[{
 		"choices" -> choices_List
 	}], propSpec_, promptMsgs_] :=
 	With[{usage = conformUsage[rawUsage]},
-		getChoiceProperty[conformChatChoice[#, promptSuffix, model, usage], propSpec] &/@ choices
+		getChoiceProperty[conformChatChoice[#, promptMsgs, model, usage], propSpec] &/@ choices
 	]
 
 conformChat[fail_?FailureQ, propSpec_, promptMsgs_] :=
@@ -127,7 +127,7 @@ conformChatChoice[choice: KeyValuePattern[{
 			}],
 		"finish_reason" -> finishReason_
 	}], promptMsgs_, model_, usage_] :=
-	OpenAIChatCompletion[<|
+	OpenAIChatCompletionObject[<|
 		"CompletionMessage" -> OpenAIChatMessageObject[<|"Role" -> role, "Text" -> content|>],
 		"PromptMessages" -> promptMsgs,
 		"Model" -> model,
@@ -162,9 +162,9 @@ conformUsage[usage_] :=
 
 completionResponseError[data_] :=
 	(
-		Message[OpenAIChatCompletion::invOpenAIChatCompletionResponse, data];
-		Failure["InvalidOpenAIChatCompletionResponse", <|
-			"MessageTemplate" :> OpenAIChatCompletion::invOpenAIChatCompletionResponse,
+		Message[OpenAIChatComplete::invOpenAIChatCompleteResponse, data];
+		Failure["InvalidOpenAIChatCompleteResponse", <|
+			"MessageTemplate" :> OpenAIChatComplete::invOpenAIChatCompleteResponse,
 			"MessageParameters" -> {data},
 			"Response" -> data
 		|>]
@@ -245,9 +245,9 @@ OpenAIChatCompletionObject /: MakeBoxes[chat_OpenAIChatCompletionObject, form:St
 			BoxForm`SummaryItem@{"completion: ", chat["CompletionMessage"]}
 		},
 		{
-			BoxForm`SummaryItem@{"model: ", completion["Model"]},
-			BoxForm`SummaryItem@{"finish reason: ", completion["FinishReason"]},
-			BoxForm`SummaryItem@{"response usage: ", completion["ResponseUsage"]}
+			BoxForm`SummaryItem@{"model: ", chat["Model"]},
+			BoxForm`SummaryItem@{"finish reason: ", chat["FinishReason"]},
+			BoxForm`SummaryItem@{"response usage: ", chat["ResponseUsage"]}
 		},
 		form
 	];

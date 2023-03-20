@@ -20,8 +20,8 @@ PacletObject[
           "ChristopherWolfram`OpenAILink`OpenAIChatMessageObject",
           "ChristopherWolfram`OpenAILink`OpenAIChatCompletionObject",
           "ChristopherWolfram`OpenAILink`OpenAITextCompletionObject",
-          "ChristopherWolfram`OpenAILink`OpenAIChatCompletion",
-          "ChristopherWolfram`OpenAILink`OpenAITextCompletion",
+          "ChristopherWolfram`OpenAILink`OpenAIChatComplete",
+          "ChristopherWolfram`OpenAILink`OpenAITextComplete",
           "ChristopherWolfram`OpenAILink`OpenAIGenerateImage",
           "ChristopherWolfram`OpenAILink`OpenAIEmbedding",
           "ChristopherWolfram`OpenAILink`OpenAIModels"

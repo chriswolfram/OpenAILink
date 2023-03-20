@@ -14,10 +14,10 @@ OpenAIStopTokens
 
 OpenAIModels
 
-OpenAITextCompletion
+OpenAITextComplete
 OpenAITextCompletionObject
 
-OpenAIChatCompletion
+OpenAIChatComplete
 OpenAIChatCompletionObject
 OpenAIChatMessageObject
 
