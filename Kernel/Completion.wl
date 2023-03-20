@@ -100,8 +100,11 @@ iOpenAICompletion[{{promptMsgs:{__OpenAIChatMessageObject}, propSpec_, n_}, opts
 				{opts},
 				OpenAICompletion
 			];
-	conformChat[rawResponse, propSpec, promptMsgs]
+		conformChat[rawResponse, propSpec, promptMsgs]
 	]
+
+iOpenAICompletion[{{promptMsg_OpenAIChatMessageObject, propSpec_, n_}, opts_}] :=
+	iOpenAICompletion[{{{promptMsg}, propSpec, n}, opts}]
 
 
 iOpenAICompletion[{{promptSpec_, propSpec_, n_}, opts_}] :=
@@ -443,6 +446,9 @@ OpenAIChatObject /: MakeBoxes[chat_OpenAIChatObject, form:StandardForm]:=
 
 
 (***** Verifier *****)
+
+HoldPattern[OpenAIChatMessageObject][role_String, text_String] :=
+	OpenAIChatMessageObject[<|"Role" -> role, "Text" -> text|>]
 
 HoldPattern[OpenAIChatMessageObject][data:Except[KeyValuePattern[{
 		"Role" -> _String,
