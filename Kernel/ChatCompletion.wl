@@ -1,4 +1,4 @@
-BeginPackage["ChristopherWolfram`OpenAILink`Completion`"];
+BeginPackage["ChristopherWolfram`OpenAILink`ChatCompletion`"];
 
 Begin["`Private`"];
 
@@ -9,7 +9,7 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 
 
 (***********************************************************************************)
-(******************************** OpenAICompletion *********************************)
+(****************************** OpenAITextCompletion *******************************)
 (***********************************************************************************)
 
 (*
