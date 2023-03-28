@@ -22,6 +22,8 @@ PacletObject[
           "ChristopherWolfram`OpenAILink`OpenAITextCompletionObject",
           "ChristopherWolfram`OpenAILink`OpenAIChatComplete",
           "ChristopherWolfram`OpenAILink`OpenAITextComplete",
+          "ChristopherWolfram`OpenAILink`OpenAITranscribeAudio",
+          "ChristopherWolfram`OpenAILink`OpenAITranslateAudio",
           "ChristopherWolfram`OpenAILink`OpenAIGenerateImage",
           "ChristopherWolfram`OpenAILink`OpenAIEmbedding",
           "ChristopherWolfram`OpenAILink`OpenAIModels"

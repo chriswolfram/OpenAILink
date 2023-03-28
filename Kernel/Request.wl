@@ -33,8 +33,8 @@ Options[OpenAIRequest] = {
 	OpenAIUser :> $OpenAIUser
 };
 
-OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
-	Enclose[Module[{apiKey, user, bodyRule, resp},
+OpenAIRequest[path_, body:_Association|None:None, opts_List:{}, head_:OpenAIRequest] :=
+	Enclose[Module[{apiKey, user, bodyRule, resp, multipartQ = body =!= None && MemberQ[body, _Association]},
 
 		apiKey = OptionValue[head, opts, OpenAIKey];
 		user = OptionValue[head, opts, OpenAIUser];
@@ -42,7 +42,7 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 		ConfirmBy[apiKey, StringQ,
 			Message[head::invalidOpenAIAPIKey, apiKey];
 			Failure["InvalidOpenAIKey", <|
-				"MessageTemplace" :> head::invalidOpenAIAPIKey.
+				"MessageTemplace" :> head::invalidOpenAIAPIKey,
 				"MessageParameters" -> {apiKey}
 			|>]
 		];
@@ -50,7 +50,13 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 		bodyRule =
 			If[body === None,
 				Nothing,
-				"Body" -> Confirm[ExportByteArray[If[user =!= None, Append[body, "user" -> user], body], "JSON"], $Failed]
+				"Body" -> Confirm[
+					If[	multipartQ,
+						Identity,
+						ExportByteArray[#, "JSON"] &
+					] @ If[user =!= None, Append[body, "user" -> user], body],
+					$Failed
+				]
 			];
 
 		resp = URLRead[
@@ -58,7 +64,7 @@ OpenAIRequest[path_, body_:None, opts_List:{}, head_:OpenAIRequest] :=
 				"Scheme" -> "https",
 				"Domain" -> "api.openai.com",
 				"Method" -> If[body === None, "GET", "POST"],
-				"ContentType" -> "application/json",
+				"ContentType" -> If[multipartQ, "multipart/form-data", "application/json"],
 				"Path" -> path,
 				bodyRule,
 				"Headers" -> {
