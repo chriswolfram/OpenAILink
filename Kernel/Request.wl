@@ -42,7 +42,7 @@ OpenAIRequest[path_, body:_Association|None:None, opts_List:{}, head_:OpenAIRequ
 		ConfirmBy[apiKey, StringQ,
 			Message[head::invalidOpenAIAPIKey, apiKey];
 			Failure["InvalidOpenAIKey", <|
-				"MessageTemplace" :> head::invalidOpenAIAPIKey,
+				"MessageTemplate" :> head::invalidOpenAIAPIKey,
 				"MessageParameters" -> {apiKey}
 			|>]
 		];
