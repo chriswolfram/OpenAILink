@@ -13,6 +13,8 @@ OpenAIRequest::openAIResponseFailureCode =
 OpenAITextComplete::openAIResponseFailureCode =
 OpenAIChatComplete::openAIResponseFailureCode =
 OpenAIGenerateImage::openAIResponseFailureCode =
+OpenAITranscribeAudio::openAIResponseFailureCode =
+OpenAITranslateAudio::openAIResponseFailureCode =
 OpenAIEmbedding::openAIResponseFailureCode =
 OpenAIFileUpload::openAIResponseFailureCode = "Request to the OpenAI API failed with status code `1`.";
 
@@ -23,6 +25,8 @@ OpenAIRequest::openAIResponseFailureMessage =
 OpenAITextComplete::openAIResponseFailureMessage =
 OpenAIChatComplete::openAIResponseFailureMessage =
 OpenAIGenerateImage::openAIResponseFailureMessage =
+OpenAITranscribeAudio::openAIResponseFailureMessage =
+OpenAITranslateAudio::openAIResponseFailureMessage =
 OpenAIEmbedding::openAIResponseFailureMessage =
 OpenAIFileUpload::openAIResponseFailureMessage = "Request to the OpenAI API failed with message: `1`.";
 
@@ -33,6 +37,8 @@ OpenAIRequest::invalidOpenAIAPIKey =
 OpenAITextComplete::invalidOpenAIAPIKey =
 OpenAIChatComplete::invalidOpenAIAPIKey =
 OpenAIGenerateImage::invalidOpenAIAPIKey =
+OpenAITranscribeAudio::invalidOpenAIAPIKey =
+OpenAITranslateAudio::invalidOpenAIAPIKey =
 OpenAIEmbedding::invalidOpenAIAPIKey =
 OpenAIFileUpload::invalidOpenAIAPIKey = "`1` is not a valid OpenAI API key. Consider setting the OpenAIKey option or the $OpenAIKey constant to a string containing a valid OpenAI API key.";
 

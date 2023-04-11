@@ -21,6 +21,9 @@ OpenAIChatComplete
 OpenAIChatCompletionObject
 OpenAIChatMessageObject
 
+OpenAITranscribeAudio
+OpenAITranslateAudio
+
 OpenAIGenerateImage
 
 OpenAIEmbedding
@@ -39,6 +42,7 @@ Needs["ChristopherWolfram`OpenAILink`Request`"]
 Needs["ChristopherWolfram`OpenAILink`Models`"]
 Needs["ChristopherWolfram`OpenAILink`TextCompletion`"]
 Needs["ChristopherWolfram`OpenAILink`ChatCompletion`"]
+Needs["ChristopherWolfram`OpenAILink`Audio`"]
 Needs["ChristopherWolfram`OpenAILink`Image`"]
 Needs["ChristopherWolfram`OpenAILink`Embedding`"]
 Needs["ChristopherWolfram`OpenAILink`Files`"]
